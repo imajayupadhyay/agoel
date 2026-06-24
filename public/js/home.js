@@ -9,7 +9,7 @@
   document.querySelectorAll('#nav a').forEach(a=>a.addEventListener('click',()=>document.body.classList.remove('menu-open')));
 
   // hero name reveal on load
-  requestAnimationFrame(()=>setTimeout(()=>document.getElementById('heroName').classList.add('in'),120));
+  requestAnimationFrame(()=>setTimeout(()=>document.getElementById('heroName')?.classList.add('in'),120));
 
   // reveal observer
   const io=new IntersectionObserver((es)=>{
@@ -18,14 +18,16 @@
   document.querySelectorAll('.reveal,#meetVisual,#meetCopy').forEach(el=>io.observe(el));
 
   // year
-  document.getElementById('yr').textContent=new Date().getFullYear();
+  const year=document.getElementById('yr');
+  if(year)year.textContent=new Date().getFullYear();
 
   // newsletter (front-end only)
   const nlBtn=document.getElementById('nlBtn'),nl=document.getElementById('nl'),nlOk=document.getElementById('nlOk');
-  nlBtn.addEventListener('click',()=>{
+  const newsletter=document.querySelector('[data-newsletter]');
+  nlBtn?.addEventListener('click',()=>{
     const v=nl.value.trim();
-    if(/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){nlOk.textContent='Thank you — you are on the list.';nl.value='';}
-    else{nlOk.textContent='Please enter a valid email address.';}
+    if(/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){nlOk.textContent=newsletter?.dataset.success||'Thank you — you are on the list.';nl.value='';}
+    else{nlOk.textContent=newsletter?.dataset.invalid||'Please enter a valid email address.';}
   });
 
   // gentle parallax on Meet Anmol layers

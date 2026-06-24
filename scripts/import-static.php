@@ -12,6 +12,7 @@ $pages = [
         'css' => $projectRoot.'/public/css/home.css',
         'js' => $projectRoot.'/public/js/home.js',
         'route' => 'home',
+        'preserve_output' => true,
         'og_image' => 'images/home/anmol-pushjai-goel-portrait.jpg',
         'embedded' => [
             'images/home/anmol-pushjai-goel-portrait.jpg',
@@ -300,9 +301,11 @@ foreach ($pages as $pageName => $page) {
     $html = str_replace('<footer id="contact">', "</main>\n\n<footer id=\"contact\">", $html);
     $html = str_replace('</body>', '<script src="{{ asset(\'js/'.$pageName.'.js\') }}"></script>'.PHP_EOL.'</body>', $html);
 
-    file_put_contents($page['css'], $css);
-    file_put_contents($page['js'], $javascript);
-    file_put_contents($page['view'], $html);
+    if (! ($page['preserve_output'] ?? false)) {
+        file_put_contents($page['css'], $css);
+        file_put_contents($page['js'], $javascript);
+        file_put_contents($page['view'], $html);
+    }
 }
 
 echo 'Imported '.count($pages)." static pages into Laravel.\n";

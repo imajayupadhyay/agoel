@@ -19,6 +19,16 @@
             </svg>
             <span>Dashboard</span>
         </a>
+
+        <a
+            class="sidebar-link {{ request()->routeIs('admin.homepage.*') ? 'is-active' : '' }}"
+            href="{{ route('admin.homepage.edit') }}"
+        >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 3 2 12h3v9h6v-6h2v6h6v-9h3L12 3Zm5 16h-2v-6H9v6H7v-7.8l5-4.5 5 4.5V19Z"/>
+            </svg>
+            <span>Homepage</span>
+        </a>
     </nav>
 
     <div class="sidebar-footer">

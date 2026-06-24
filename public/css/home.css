@@ -325,3 +325,15 @@
   .voice-dots button{width:7px;height:7px;border-radius:50%;border:0;background:var(--line);cursor:pointer;padding:0;transition:background .4s,transform .4s}
   .voice-dots button.on{background:var(--gold);transform:scale(1.35)}
   .voice-by{margin-top:30px;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--muted)}
+
+  /* ---------- admin-created custom homepage sections ---------- */
+  .custom-home-section-light{background:var(--paper);color:var(--text)}
+  .custom-home-section-dark{background:var(--ink);color:#fff}
+  .custom-home-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(34px,5vw,80px);align-items:center}
+  .custom-home-grid-copy-only{grid-template-columns:1fr}
+  .custom-home-grid-copy-only .block-head{max-width:760px}
+  .custom-home-section-dark .lead{color:var(--muted-d)}
+  .custom-home-copy{white-space:pre-line}
+  .custom-home-button{display:inline-flex;margin-top:26px;padding:12px 18px;border:1px solid var(--gold);color:inherit;font-size:11px;letter-spacing:.16em;text-transform:uppercase;transition:background .3s,color .3s}
+  .custom-home-button:hover{background:var(--gold);color:var(--ink)}
+  @media(max-width:900px){.custom-home-grid{grid-template-columns:1fr}}

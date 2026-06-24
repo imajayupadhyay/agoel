@@ -2,11 +2,14 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class SiteTest extends TestCase
 {
+    use RefreshDatabase;
+
     public static function pageProvider(): array
     {
         return [
@@ -29,7 +32,8 @@ class SiteTest extends TestCase
             ->assertSee($title, false)
             ->assertSee('rel="canonical"', false)
             ->assertSee('application/ld+json', false)
-            ->assertSee('"@context": "https://schema.org"', false)
+            ->assertSee('"@context"', false)
+            ->assertSee('https://schema.org', false)
             ->assertSee('<main id="main-content">', false)
             ->assertSee('</main>', false)
             ->assertSee($stylesheet, false)

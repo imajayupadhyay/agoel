@@ -20,6 +20,7 @@ Open `http://127.0.0.1:8000`.
 - `/philanthropy` — Philanthropy and governance
 - `/sanchalak` — Admin login
 - `/sanchalak/dashboard` — Protected admin dashboard
+- `/sanchalak/homepage` — Structured homepage content manager
 - `/sitemap.xml` — XML sitemap
 - `/robots.txt` — Dynamic robots file
 
@@ -40,7 +41,13 @@ composer install --no-dev --optimize-autoloader
 php artisan optimize
 ```
 
-The site does not require a database for normal page requests.
+The homepage and admin content manager are database-driven. Apply migrations
+before serving a fresh installation:
+
+```bash
+php artisan migrate
+php artisan storage:link
+```
 
 ## Static source import
 
@@ -50,4 +57,9 @@ The original HTML was imported with:
 php scripts/import-static.php
 ```
 
-Running the importer again regenerates the three Blade views and their page-specific CSS/JavaScript from the source files in `../html`.
+Running the importer again regenerates the Industries and Philanthropy Blade
+views and their page-specific CSS/JavaScript from the source files in `../html`.
+
+The dynamic homepage output is intentionally protected from importer
+regeneration. The importer continues to preserve the original source assets
+without overwriting the CMS-backed homepage Blade, CSS, or JavaScript.
