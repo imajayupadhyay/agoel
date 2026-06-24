@@ -1,0 +1,10 @@
+const hdr=document.getElementById("hdr");
+  const onScroll=()=>hdr.classList.toggle("scrolled",window.scrollY>40);
+  onScroll();window.addEventListener("scroll",onScroll,{passive:true});
+  const burger=document.getElementById("burger");
+  burger.addEventListener("click",()=>document.body.classList.toggle("menu-open"));
+  document.querySelectorAll("#nav a").forEach(a=>a.addEventListener("click",()=>document.body.classList.remove("menu-open")));
+  requestAnimationFrame(()=>setTimeout(()=>document.getElementById("heroTitle").classList.add("in"),120));
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});},{threshold:.16,rootMargin:"0px 0px -8% 0px"});
+  document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+  document.getElementById("yr").textContent=new Date().getFullYear();
