@@ -133,6 +133,7 @@ JSON,
         'css' => $projectRoot.'/public/css/philanthropy.css',
         'js' => $projectRoot.'/public/js/philanthropy.js',
         'route' => 'philanthropy',
+        'preserve_output' => true,
         'og_image' => 'images/philanthropy/anmol-pushjai-goel-philanthropy.jpg',
         'embedded' => [
             'images/philanthropy/philanthropy-hero-background.jpg',

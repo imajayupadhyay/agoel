@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HomepageController;
 use App\Http\Controllers\Admin\IndustriesController;
+use App\Http\Controllers\Admin\PhilanthropyController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('sanchalak')->group(function () {
@@ -22,6 +23,8 @@ Route::prefix('sanchalak')->group(function () {
         Route::put('/industries', [IndustriesController::class, 'update'])->name('admin.industries.update');
         Route::post('/industries/items', [IndustriesController::class, 'storeIndustry'])->name('admin.industries.items.store');
         Route::delete('/industries/items/{industry}', [IndustriesController::class, 'destroyIndustry'])->name('admin.industries.items.destroy');
+        Route::get('/philanthropy', [PhilanthropyController::class, 'edit'])->name('admin.philanthropy.edit');
+        Route::put('/philanthropy', [PhilanthropyController::class, 'update'])->name('admin.philanthropy.update');
         Route::post('/logout', [AuthController::class, 'destroy'])->name('admin.logout');
     });
 });

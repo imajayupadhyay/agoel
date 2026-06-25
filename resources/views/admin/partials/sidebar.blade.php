@@ -39,6 +39,16 @@
             </svg>
             <span>Industries</span>
         </a>
+
+        <a
+            class="sidebar-link {{ request()->routeIs('admin.philanthropy.*') ? 'is-active' : '' }}"
+            href="{{ route('admin.philanthropy.edit') }}"
+        >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 21s-7-4.4-7-10.2C5 7.6 7.2 5 10.2 5c1.1 0 2.1.4 2.8 1.2C13.7 5.4 14.7 5 15.8 5 18.8 5 21 7.6 21 10.8 21 16.6 14 21 14 21h-2Zm1-2.4c1.9-1.3 6-4.6 6-7.8C19 8.7 17.7 7 15.8 7c-1.1 0-2.1.7-2.8 1.7C12.3 7.7 11.3 7 10.2 7 8.3 7 7 8.7 7 10.8c0 3.2 4.1 6.5 6 7.8Z"/>
+            </svg>
+            <span>Philanthropy</span>
+        </a>
     </nav>
 
     <div class="sidebar-footer">
