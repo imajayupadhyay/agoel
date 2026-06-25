@@ -1,0 +1,38 @@
+.industries-editor-heading {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 24px;
+    margin: 42px 0 18px;
+}
+
+.industries-editor-heading h2 {
+    margin: 5px 0 0;
+}
+
+.industries-editor-heading p {
+    max-width: 480px;
+    margin: 0;
+    color: var(--admin-muted);
+}
+
+.industry-editor-card [data-industry-body][hidden] {
+    display: none;
+}
+
+.industry-facts-editor {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+@media (max-width: 720px) {
+    .industries-editor-heading {
+        align-items: start;
+        flex-direction: column;
+    }
+
+    .industry-facts-editor {
+        grid-template-columns: 1fr;
+    }
+}

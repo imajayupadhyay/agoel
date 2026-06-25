@@ -61,7 +61,7 @@ document.querySelectorAll('[data-section-toggle]').forEach((button) => {
 });
 
 const refreshSectionOrder = () => {
-    const cards = [...document.querySelectorAll('#homepage-form > [data-section-card]')];
+    const cards = [...document.querySelectorAll('[data-cms-form] > [data-section-card]')];
 
     cards.forEach((card, index) => {
         const orderInput = card.querySelector('.cms-order input');

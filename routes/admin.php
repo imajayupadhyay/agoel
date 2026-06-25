@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HomepageController;
+use App\Http\Controllers\Admin\IndustriesController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('sanchalak')->group(function () {
@@ -17,6 +18,10 @@ Route::prefix('sanchalak')->group(function () {
         Route::put('/homepage', [HomepageController::class, 'update'])->name('admin.homepage.update');
         Route::post('/homepage/sections', [HomepageController::class, 'storeSection'])->name('admin.homepage.sections.store');
         Route::delete('/homepage/sections/{section}', [HomepageController::class, 'destroySection'])->name('admin.homepage.sections.destroy');
+        Route::get('/industries', [IndustriesController::class, 'edit'])->name('admin.industries.edit');
+        Route::put('/industries', [IndustriesController::class, 'update'])->name('admin.industries.update');
+        Route::post('/industries/items', [IndustriesController::class, 'storeIndustry'])->name('admin.industries.items.store');
+        Route::delete('/industries/items/{industry}', [IndustriesController::class, 'destroyIndustry'])->name('admin.industries.items.destroy');
         Route::post('/logout', [AuthController::class, 'destroy'])->name('admin.logout');
     });
 });

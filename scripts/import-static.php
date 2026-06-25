@@ -74,6 +74,7 @@ JSON,
         'css' => $projectRoot.'/public/css/industries.css',
         'js' => $projectRoot.'/public/js/industries.js',
         'route' => 'industries',
+        'preserve_output' => true,
         'og_image' => 'images/industries/technology.jpg',
         'embedded' => [],
         'remote_assets' => [

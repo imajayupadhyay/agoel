@@ -1,10 +1,11 @@
 @extends('layouts.admin')
 
-@section('title', 'Homepage')
-@section('page-title', 'Homepage')
+@section('title', 'Industries')
+@section('page-title', 'Industries')
 
 @push('styles')
     <link rel="stylesheet" href="{{ asset('css/admin-homepage.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/admin-industries.css') }}">
 @endpush
 
 @section('content')
@@ -12,12 +13,12 @@
         <header class="cms-page-header">
             <div>
                 <p class="cms-eyebrow">Website content</p>
-                <h2>Manage the homepage</h2>
-                <p>Edit every homepage section, image, repeated item, visibility state, and display order from one workspace.</p>
+                <h2>Manage the Industries page</h2>
+                <p>Edit page sections, SEO, industry theses, imagery, visibility, and display order.</p>
             </div>
 
-            <a class="cms-button cms-button-secondary" href="{{ route('home') }}" target="_blank" rel="noopener">
-                View homepage ↗
+            <a class="cms-button cms-button-secondary" href="{{ route('industries') }}" target="_blank" rel="noopener">
+                View Industries page ↗
             </a>
         </header>
 
@@ -27,41 +28,42 @@
 
         @if ($errors->any())
             <div class="cms-alert cms-alert-error">
-                <strong>The homepage was not saved.</strong>
-                <span>Review the highlighted fields. {{ $errors->count() }} validation error(s) were found.</span>
+                <strong>The Industries page was not saved.</strong>
+                <span>Review the fields below. {{ $errors->count() }} validation error(s) were found.</span>
             </div>
         @endif
 
         <div class="cms-layout">
             <aside class="cms-section-index">
-                <strong>Sections</strong>
+                <strong>Page sections</strong>
                 <nav>
-                    <a href="#homepage-seo">SEO & Publishing</a>
+                    <a href="#industries-seo">SEO & Publishing</a>
                     @foreach ($sections as $section)
                         <a href="#section-{{ $section->id }}">{{ $section->name }}</a>
                     @endforeach
+                    <a href="#industry-items">Industry entries</a>
                 </nav>
 
-                <form class="cms-add-section" method="POST" action="{{ route('admin.homepage.sections.store') }}">
+                <form class="cms-add-section" method="POST" action="{{ route('admin.industries.items.store') }}">
                     @csrf
-                    <label for="new-section-name">Add custom section</label>
-                    <input id="new-section-name" name="name" type="text" maxlength="120" placeholder="Section name" required>
-                    <button class="cms-button cms-button-secondary" type="submit">Add section</button>
+                    <label for="new-industry-name">Add industry</label>
+                    <input id="new-industry-name" name="name" type="text" maxlength="160" placeholder="Industry name" required>
+                    <button class="cms-button cms-button-secondary" type="submit">Add industry</button>
                 </form>
             </aside>
 
             <div class="cms-editor">
                 <form
-                    id="homepage-form"
+                    id="industries-form"
                     data-cms-form
                     method="POST"
-                    action="{{ route('admin.homepage.update') }}"
+                    action="{{ route('admin.industries.update') }}"
                     enctype="multipart/form-data"
                 >
                     @csrf
                     @method('PUT')
 
-                    <section class="cms-section-card" id="homepage-seo">
+                    <section class="cms-section-card" id="industries-seo">
                         <header class="cms-section-header">
                             <div>
                                 <span class="cms-section-type">page settings</span>
@@ -114,9 +116,9 @@
                                     <label class="cms-check">
                                         <input name="page[is_published]" type="hidden" value="0">
                                         <input name="page[is_published]" type="checkbox" value="1" @checked(old('page.is_published', $page->is_published))>
-                                        Homepage is published
+                                        Industries page is published
                                     </label>
-                                    <small>Turning this off makes the public homepage return 404.</small>
+                                    <small>Turning this off makes the public Industries page return 404.</small>
                                 </div>
                             </div>
                         </div>
@@ -126,17 +128,31 @@
                         @include('admin.homepage.partials.section')
                     @endforeach
 
+                    <div class="industries-editor-heading" id="industry-items">
+                        <div>
+                            <span class="cms-section-type">portfolio records</span>
+                            <h2>Industry entries</h2>
+                        </div>
+                        <p>Entries are server-rendered on the public page in the order shown here.</p>
+                    </div>
+
+                    <div data-industry-list>
+                        @foreach ($industries as $industry)
+                            @include('admin.industries.partials.industry')
+                        @endforeach
+                    </div>
+
                     <div class="cms-savebar">
                         <span>Changes are not public until you save.</span>
-                        <button class="cms-button cms-button-primary" type="submit">Save homepage</button>
+                        <button class="cms-button cms-button-primary" type="submit">Save Industries page</button>
                     </div>
                 </form>
 
-                @foreach ($sections->where('is_custom', true) as $section)
+                @foreach ($industries as $industry)
                     <form
-                        id="delete-section-{{ $section->id }}"
+                        id="delete-industry-{{ $industry->id }}"
                         method="POST"
-                        action="{{ route('admin.homepage.sections.destroy', $section) }}"
+                        action="{{ route('admin.industries.items.destroy', $industry) }}"
                     >
                         @csrf
                         @method('DELETE')
@@ -149,4 +165,5 @@
 
 @push('scripts')
     <script src="{{ asset('js/admin-homepage.js') }}"></script>
+    <script src="{{ asset('js/admin-industries.js') }}"></script>
 @endpush

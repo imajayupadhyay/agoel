@@ -29,6 +29,16 @@
             </svg>
             <span>Homepage</span>
         </a>
+
+        <a
+            class="sidebar-link {{ request()->routeIs('admin.industries.*') ? 'is-active' : '' }}"
+            href="{{ route('admin.industries.edit') }}"
+        >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 20h16v2H4v-2Zm1-2V9l5 3V9l5 3V4h4v14H5Zm2-2h10V8h0v7.4l-5-3V16l-5-3v3Z"/>
+            </svg>
+            <span>Industries</span>
+        </a>
     </nav>
 
     <div class="sidebar-footer">
