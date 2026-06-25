@@ -103,6 +103,8 @@
                                     </div>
                                 </div>
 
+                                @include('admin.partials.page-seo-controls')
+
                                 <div class="cms-field cms-field-wide">
                                     <label class="cms-check">
                                         <input name="page[is_published]" type="hidden" value="0">

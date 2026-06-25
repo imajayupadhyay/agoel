@@ -4,6 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use App\Models\Page;
 use App\Rules\SafeContentLink;
+use App\Rules\ValidJsonLd;
 use App\Services\HomepageSchema;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -23,7 +24,21 @@ class UpdateHomepageRequest extends FormRequest
             'page.title' => ['required', 'string', 'max:160'],
             'page.seo_title' => ['required', 'string', 'max:180'],
             'page.meta_description' => ['required', 'string', 'max:320'],
+            'page.canonical_url' => ['nullable', 'url:http,https', 'max:2048'],
             'page.is_published' => ['nullable', 'boolean'],
+            'page.robots_index' => ['nullable', 'boolean'],
+            'page.robots_follow' => ['nullable', 'boolean'],
+            'page.schema_override_enabled' => ['nullable', 'boolean'],
+            'page.schema_markup' => [
+                Rule::requiredIf($this->boolean('page.schema_override_enabled')),
+                'nullable',
+                'string',
+                'max:100000',
+                new ValidJsonLd,
+            ],
+            'page.sitemap_included' => ['nullable', 'boolean'],
+            'page.sitemap_change_frequency' => ['required', Rule::in(['always', 'hourly', 'daily', 'weekly', 'monthly', 'yearly', 'never'])],
+            'page.sitemap_priority' => ['required', 'numeric', 'min:0', 'max:1'],
             'page.og_image_upload' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:8192'],
             'page.remove_og_image' => ['nullable', 'boolean'],
             'sections' => ['required', 'array'],

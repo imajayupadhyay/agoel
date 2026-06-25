@@ -36,7 +36,17 @@ class IndustriesManager
                 'title' => $this->clean($pageData['title']),
                 'seo_title' => $this->clean($pageData['seo_title']),
                 'meta_description' => $this->clean($pageData['meta_description']),
+                'canonical_url' => $this->cleanNullable($pageData['canonical_url'] ?? null),
                 'og_image' => $ogImage,
+                'robots_index' => $request->boolean('page.robots_index'),
+                'robots_follow' => $request->boolean('page.robots_follow'),
+                'schema_override_enabled' => $request->boolean('page.schema_override_enabled'),
+                'schema_markup' => $request->boolean('page.schema_override_enabled')
+                    ? $this->jsonNullable($pageData['schema_markup'] ?? null)
+                    : null,
+                'sitemap_included' => $request->boolean('page.sitemap_included'),
+                'sitemap_change_frequency' => $pageData['sitemap_change_frequency'],
+                'sitemap_priority' => $pageData['sitemap_priority'],
                 'is_published' => $request->boolean('page.is_published'),
             ]);
 
@@ -177,5 +187,17 @@ class IndustriesManager
     private function clean(string $value): string
     {
         return trim(strip_tags($value));
+    }
+
+    private function jsonNullable(?string $value): ?string
+    {
+        if (! filled($value)) {
+            return null;
+        }
+
+        return json_encode(
+            json_decode($value, true, 512, JSON_THROW_ON_ERROR),
+            JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE,
+        );
     }
 }

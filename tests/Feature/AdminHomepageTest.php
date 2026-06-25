@@ -84,6 +84,52 @@ class AdminHomepageTest extends TestCase
         $this->assertStringStartsWith('pages/home/hero/', $path);
     }
 
+    public function test_admin_can_save_page_level_seo_and_schema_overrides(): void
+    {
+        $page = $this->homepage();
+        $payload = $this->payload($page);
+        $payload['page']['canonical_url'] = 'https://example.com/anmol';
+        $payload['page']['robots_index'] = 0;
+        $payload['page']['robots_follow'] = 0;
+        $payload['page']['schema_override_enabled'] = 1;
+        $payload['page']['schema_markup'] = json_encode([
+            '@context' => 'https://schema.org',
+            '@type' => 'ProfilePage',
+            'name' => 'Managed homepage schema',
+        ]);
+        $payload['page']['sitemap_change_frequency'] = 'weekly';
+        $payload['page']['sitemap_priority'] = 0.9;
+
+        $this->actingAs($this->admin())
+            ->put('/sanchalak/homepage', $payload)
+            ->assertRedirect()
+            ->assertSessionHas('status');
+
+        $page->refresh();
+
+        $this->assertSame('https://example.com/anmol', $page->canonical_url);
+        $this->assertFalse($page->robots_index);
+        $this->assertTrue($page->schema_override_enabled);
+        $this->assertSame('weekly', $page->sitemap_change_frequency);
+
+        $this->get('/')
+            ->assertOk()
+            ->assertSee('Managed homepage schema')
+            ->assertSee('content="noindex, nofollow, max-image-preview:large"', false);
+    }
+
+    public function test_invalid_page_schema_override_is_rejected(): void
+    {
+        $page = $this->homepage();
+        $payload = $this->payload($page);
+        $payload['page']['schema_override_enabled'] = 1;
+        $payload['page']['schema_markup'] = '{"@context":';
+
+        $this->actingAs($this->admin())
+            ->put('/sanchalak/homepage', $payload)
+            ->assertSessionHasErrors('page.schema_markup');
+    }
+
     public function test_admin_can_add_and_remove_a_custom_section(): void
     {
         $admin = $this->admin();
@@ -167,6 +213,14 @@ class AdminHomepageTest extends TestCase
                 'title' => $page->title,
                 'seo_title' => $page->seo_title,
                 'meta_description' => $page->meta_description,
+                'canonical_url' => $page->canonical_url,
+                'robots_index' => 1,
+                'robots_follow' => 1,
+                'schema_override_enabled' => 0,
+                'schema_markup' => null,
+                'sitemap_included' => 1,
+                'sitemap_change_frequency' => $page->sitemap_change_frequency,
+                'sitemap_priority' => $page->sitemap_priority,
                 'is_published' => 1,
                 'remove_og_image' => 0,
             ],

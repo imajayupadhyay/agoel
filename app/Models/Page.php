@@ -13,7 +13,15 @@ class Page extends Model
         'slug',
         'seo_title',
         'meta_description',
+        'canonical_url',
         'og_image',
+        'robots_index',
+        'robots_follow',
+        'schema_override_enabled',
+        'schema_markup',
+        'sitemap_included',
+        'sitemap_change_frequency',
+        'sitemap_priority',
         'is_published',
     ];
 
@@ -21,6 +29,11 @@ class Page extends Model
     {
         return [
             'is_published' => 'boolean',
+            'robots_index' => 'boolean',
+            'robots_follow' => 'boolean',
+            'schema_override_enabled' => 'boolean',
+            'sitemap_included' => 'boolean',
+            'sitemap_priority' => 'decimal:1',
         ];
     }
 

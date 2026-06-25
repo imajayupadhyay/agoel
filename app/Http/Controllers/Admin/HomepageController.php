@@ -10,13 +10,14 @@ use App\Models\PageSection;
 use App\Services\HomepageManager;
 use App\Services\HomepageMedia;
 use App\Services\HomepageSchema;
+use App\Services\PageSeo;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class HomepageController extends Controller
 {
-    public function edit(HomepageSchema $schema, HomepageMedia $media): View
+    public function edit(HomepageSchema $schema, HomepageMedia $media, PageSeo $seo): View
     {
         $page = $this->homepage();
 
@@ -25,6 +26,7 @@ class HomepageController extends Controller
             'sections' => $page->sections,
             'schema' => $schema,
             'media' => $media,
+            'defaultSchemaJson' => $seo->defaultSchemaJson($page),
         ]);
     }
 

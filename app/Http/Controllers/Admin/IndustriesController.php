@@ -10,13 +10,14 @@ use App\Models\Page;
 use App\Services\IndustriesManager;
 use App\Services\IndustriesMedia;
 use App\Services\IndustriesSchema;
+use App\Services\PageSeo;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class IndustriesController extends Controller
 {
-    public function edit(IndustriesSchema $schema, IndustriesMedia $media): View
+    public function edit(IndustriesSchema $schema, IndustriesMedia $media, PageSeo $seo): View
     {
         $page = $this->page();
 
@@ -26,6 +27,7 @@ class IndustriesController extends Controller
             'industries' => Industry::query()->orderBy('sort_order')->get(),
             'schema' => $schema,
             'media' => $media,
+            'defaultSchemaJson' => $seo->defaultSchemaJson($page),
         ]);
     }
 

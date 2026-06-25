@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\HomepageController;
 use App\Http\Controllers\Admin\IndustriesController;
 use App\Http\Controllers\Admin\PhilanthropyController;
+use App\Http\Controllers\Admin\SeoSettingsController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('sanchalak')->group(function () {
@@ -25,6 +26,8 @@ Route::prefix('sanchalak')->group(function () {
         Route::delete('/industries/items/{industry}', [IndustriesController::class, 'destroyIndustry'])->name('admin.industries.items.destroy');
         Route::get('/philanthropy', [PhilanthropyController::class, 'edit'])->name('admin.philanthropy.edit');
         Route::put('/philanthropy', [PhilanthropyController::class, 'update'])->name('admin.philanthropy.update');
+        Route::get('/seo', [SeoSettingsController::class, 'edit'])->name('admin.seo.edit');
+        Route::put('/seo', [SeoSettingsController::class, 'update'])->name('admin.seo.update');
         Route::post('/logout', [AuthController::class, 'destroy'])->name('admin.logout');
     });
 });

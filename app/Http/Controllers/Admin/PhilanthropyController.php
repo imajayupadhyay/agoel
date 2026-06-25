@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UpdatePhilanthropyRequest;
 use App\Models\Page;
+use App\Services\PageSeo;
 use App\Services\PhilanthropyManager;
 use App\Services\PhilanthropyMedia;
 use App\Services\PhilanthropySchema;
@@ -13,7 +14,7 @@ use Illuminate\View\View;
 
 class PhilanthropyController extends Controller
 {
-    public function edit(PhilanthropySchema $schema, PhilanthropyMedia $media): View
+    public function edit(PhilanthropySchema $schema, PhilanthropyMedia $media, PageSeo $seo): View
     {
         $page = $this->page();
 
@@ -22,6 +23,7 @@ class PhilanthropyController extends Controller
             'sections' => $page->sections,
             'schema' => $schema,
             'media' => $media,
+            'defaultSchemaJson' => $seo->defaultSchemaJson($page),
         ]);
     }
 

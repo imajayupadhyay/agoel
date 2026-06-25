@@ -9,9 +9,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=Montserrat:wght@200;300;400;500;600&family=Caveat:wght@500&display=swap" rel="stylesheet">
 
-<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="robots" content="{{ $robotsMeta }}">
 <meta name="author" content="Anmol Pushjai Goel">
-<link rel="canonical" href="{{ route('philanthropy') }}">
+<link rel="canonical" href="{{ $canonicalUrl }}">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_IN">
 <meta property="og:site_name" content="Anmol Pushjai Goel">
@@ -28,21 +28,7 @@
 <meta name="twitter:image" content="{{ $media->url($page->og_image) }}">
 @endif
 <link rel="stylesheet" href="{{ asset('css/philanthropy.css') }}">
-<script type="application/ld+json">
-{!! json_encode([
-    '@@context' => 'https://schema.org',
-    '@type' => 'WebPage',
-    'name' => $page->seo_title,
-    'url' => route('philanthropy'),
-    'description' => $page->meta_description,
-    'inLanguage' => 'en-IN',
-    'about' => [
-        '@type' => 'Person',
-        'name' => 'Anmol Pushjai Goel',
-        'url' => route('home'),
-    ],
-], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
-</script>
+<script type="application/ld+json">{!! json_encode($schemaMarkup, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
 </head>
 <body>
 

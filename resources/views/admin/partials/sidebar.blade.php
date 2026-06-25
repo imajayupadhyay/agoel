@@ -49,6 +49,16 @@
             </svg>
             <span>Philanthropy</span>
         </a>
+
+        <a
+            class="sidebar-link {{ request()->routeIs('admin.seo.*') ? 'is-active' : '' }}"
+            href="{{ route('admin.seo.edit') }}"
+        >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M9.5 3a6.5 6.5 0 1 0 3.94 11.67L18.77 20 20 18.77l-5.33-5.33A6.5 6.5 0 0 0 9.5 3Zm0 2a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Z"/>
+            </svg>
+            <span>SEO Settings</span>
+        </a>
     </nav>
 
     <div class="sidebar-footer">
