@@ -61,6 +61,16 @@
         </a>
 
         <a
+            class="sidebar-link {{ request()->routeIs('admin.books.*') ? 'is-active' : '' }}"
+            href="{{ route('admin.books.edit') }}"
+        >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 4.5A2.5 2.5 0 0 1 7.5 2H20v17H8a2 2 0 0 0-2 2H4V6.5c0-1.1.9-2 2-2Zm1 13.1c.6-.4 1.3-.6 2-.6h10V4H7.5C6.7 4 6 4.7 6 5.5v12.1ZM8 6h8v2H8V6Zm0 3h8v1.5H8V9Z"/>
+            </svg>
+            <span>Books</span>
+        </a>
+
+        <a
             class="sidebar-link {{ request()->routeIs('admin.seo.*') ? 'is-active' : '' }}"
             href="{{ route('admin.seo.edit') }}"
         >

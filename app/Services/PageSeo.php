@@ -45,7 +45,7 @@ class PageSeo
         $url = $this->pageUrl($page);
         $base = [
             '@context' => 'https://schema.org',
-            '@type' => in_array($page->key, ['industries', 'news'], true) ? 'CollectionPage' : 'WebPage',
+            '@type' => in_array($page->key, ['industries', 'news', 'books'], true) ? 'CollectionPage' : 'WebPage',
             '@id' => $url.'#webpage',
             'url' => $url,
             'name' => $page->seo_title,
@@ -127,6 +127,41 @@ class PageSeo
                         'name' => $item['outlet'],
                     ] : null,
                 ]))
+                ->values()
+                ->all();
+        }
+
+        if ($page->key === 'books') {
+            $books = $page->sections()
+                ->where('key', 'library')
+                ->first()
+                ?->content['books'] ?? [];
+            $reviews = $page->sections()
+                ->where('key', 'reviews')
+                ->first()
+                ?->content['reviews'] ?? [];
+
+            $base['hasPart'] = collect($books)
+                ->filter(fn (array $item) => filled($item['title'] ?? null))
+                ->map(fn (array $item) => array_filter([
+                    '@type' => 'Book',
+                    'name' => $item['title'] ?? null,
+                    'author' => filled($item['author'] ?? null) ? [
+                        '@type' => 'Person',
+                        'name' => $item['author'],
+                    ] : null,
+                ]))
+                ->merge(collect($reviews)
+                    ->filter(fn (array $item) => filled($item['title'] ?? null))
+                    ->map(fn (array $item) => array_filter([
+                        '@type' => 'Review',
+                        'name' => $item['title'] ?? null,
+                        'reviewBody' => $item['teaser'] ?? null,
+                        'itemReviewed' => [
+                            '@type' => 'Book',
+                            'name' => $item['title'] ?? null,
+                        ],
+                    ])))
                 ->values()
                 ->all();
         }
