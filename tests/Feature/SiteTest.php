@@ -41,7 +41,22 @@ class SiteTest extends TestCase
             ->assertSee('<main id="main-content">', false)
             ->assertSee('</main>', false)
             ->assertSee($stylesheet, false)
+            ->assertSee('rel="icon"', false)
+            ->assertSee('favicon.svg', false)
             ->assertDontSee('data:image', false);
+    }
+
+    public function test_favicon_is_available(): void
+    {
+        $favicon = public_path('favicon.svg');
+        $contents = file_get_contents($favicon);
+
+        $this->assertFileExists($favicon);
+        $this->assertStringContainsString('<svg', $contents);
+        $this->assertStringContainsString('#A98F5B', $contents);
+        $this->assertStringContainsString('#C7B589', $contents);
+
+        $this->get('/favicon.ico')->assertRedirect('/favicon.svg');
     }
 
     public function test_sitemap_and_robots_are_available(): void
@@ -105,5 +120,20 @@ class SiteTest extends TestCase
         $this->get('/BookAG.html')->assertRedirect('/books');
         $this->get('/AG-Research & Publications.html')->assertRedirect('/research-publications');
         $this->get('/2About_AG .html')->assertRedirect('/about-anmol-goel');
+    }
+
+    public function test_missing_public_page_renders_themed_404_with_seo_controls(): void
+    {
+        $this->get('/missing-page-that-does-not-exist')
+            ->assertNotFound()
+            ->assertSee('Page Not Found — Anmol Pushjai Goel', false)
+            ->assertSee('meta name="robots" content="noindex, follow, max-image-preview:large"', false)
+            ->assertSee('css/error.css', false)
+            ->assertSee('favicon.svg', false)
+            ->assertSee('<main id="main-content" class="not-found">', false)
+            ->assertSee('>Return Home<', false)
+            ->assertSee('>Industries<', false)
+            ->assertSee('>Philanthropy<', false)
+            ->assertDontSee('data:image', false);
     }
 }

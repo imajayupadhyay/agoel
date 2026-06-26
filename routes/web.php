@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/sitemap.xml', [SeoFilesController::class, 'sitemap'])->name('sitemap');
 Route::get('/robots.txt', [SeoFilesController::class, 'robots'])->name('robots');
+Route::permanentRedirect('/favicon.ico', '/favicon.svg');
 
 Route::permanentRedirect('/F1_Anmolweb-D.html', '/');
 Route::permanentRedirect('/F1 Anmolweb-D.html', '/');
