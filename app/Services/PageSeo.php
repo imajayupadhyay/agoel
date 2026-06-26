@@ -45,7 +45,7 @@ class PageSeo
         $url = $this->pageUrl($page);
         $base = [
             '@context' => 'https://schema.org',
-            '@type' => $page->key === 'industries' ? 'CollectionPage' : 'WebPage',
+            '@type' => in_array($page->key, ['industries', 'news'], true) ? 'CollectionPage' : 'WebPage',
             '@id' => $url.'#webpage',
             'url' => $url,
             'name' => $page->seo_title,
@@ -110,6 +110,27 @@ class PageSeo
                 ->all();
         }
 
+        if ($page->key === 'news') {
+            $coverage = $page->sections()
+                ->where('key', 'hero')
+                ->first()
+                ?->content['coverage'] ?? [];
+
+            $base['hasPart'] = collect($coverage)
+                ->filter(fn (array $item) => filled($item['title'] ?? null))
+                ->map(fn (array $item) => array_filter([
+                    '@type' => 'Article',
+                    'headline' => $item['title'] ?? null,
+                    'url' => $item['url'] ?? null,
+                    'publisher' => filled($item['outlet'] ?? null) ? [
+                        '@type' => 'Organization',
+                        'name' => $item['outlet'],
+                    ] : null,
+                ]))
+                ->values()
+                ->all();
+        }
+
         return $base;
     }
 
@@ -119,6 +140,9 @@ class PageSeo
             'home' => route('home'),
             'industries' => route('industries'),
             'philanthropy' => route('philanthropy'),
+            'news' => route('news'),
+            'books' => route('books'),
+            'research' => route('research'),
             default => url($page->slug),
         };
     }

@@ -51,6 +51,16 @@
         </a>
 
         <a
+            class="sidebar-link {{ request()->routeIs('admin.news.*') ? 'is-active' : '' }}"
+            href="{{ route('admin.news.edit') }}"
+        >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 5h16v14H4V5Zm2 2v10h12V7H6Zm1 1h5v4H7V8Zm0 5h10v1.5H7V13Zm7-5h3v1.5h-3V8Zm0 2.5h3V12h-3v-1.5Z"/>
+            </svg>
+            <span>In the News</span>
+        </a>
+
+        <a
             class="sidebar-link {{ request()->routeIs('admin.seo.*') ? 'is-active' : '' }}"
             href="{{ route('admin.seo.edit') }}"
         >
