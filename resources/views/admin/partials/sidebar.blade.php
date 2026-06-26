@@ -31,6 +31,16 @@
         </a>
 
         <a
+            class="sidebar-link {{ request()->routeIs('admin.header.*') ? 'is-active' : '' }}"
+            href="{{ route('admin.header.edit') }}"
+        >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 5h16v4H4V5Zm0 6h4v8H4v-8Zm6 0h10v2H10v-2Zm0 4h10v2H10v-2Z"/>
+            </svg>
+            <span>Header</span>
+        </a>
+
+        <a
             class="sidebar-link {{ request()->routeIs('admin.industries.*') ? 'is-active' : '' }}"
             href="{{ route('admin.industries.edit') }}"
         >

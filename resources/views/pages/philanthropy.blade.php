@@ -32,18 +32,7 @@
 </head>
 <body>
 
-<header id="hdr">
-  <a href="{{ route('home') }}" class="brand"><span class="mono">A</span>Anmol Pushjai Goel</a>
-  <nav id="nav">
-    <a href="{{ route('industries') }}">Industries</a>
-    <a href="#top" class="active">Philanthropy</a>
-    <a href="{{ route('news') }}">In the News</a>
-    <a href="{{ route('books') }}">Books</a>
-    <a href="{{ route('research') }}">Research &amp; Publications</a>
-    <a href="{{ route('about') }}">About Anmol Goel</a>
-  </nav>
-  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
-</header>
+@include('partials.site-header')
 
 <main id="main-content">
 @foreach ($sections as $section)

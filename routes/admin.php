@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\BooksController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\HeaderController;
 use App\Http\Controllers\Admin\HomepageController;
 use App\Http\Controllers\Admin\IndustriesController;
 use App\Http\Controllers\Admin\NewsController;
@@ -20,6 +21,8 @@ Route::prefix('sanchalak')->group(function () {
 
     Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('/dashboard', DashboardController::class)->name('admin.dashboard');
+        Route::get('/header', [HeaderController::class, 'edit'])->name('admin.header.edit');
+        Route::put('/header', [HeaderController::class, 'update'])->name('admin.header.update');
         Route::get('/homepage', [HomepageController::class, 'edit'])->name('admin.homepage.edit');
         Route::put('/homepage', [HomepageController::class, 'update'])->name('admin.homepage.update');
         Route::post('/homepage/sections', [HomepageController::class, 'storeSection'])->name('admin.homepage.sections.store');
