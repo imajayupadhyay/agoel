@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\HomepageController;
 use App\Http\Controllers\Admin\IndustriesController;
 use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\PhilanthropyController;
+use App\Http\Controllers\Admin\ResearchController;
 use App\Http\Controllers\Admin\SeoSettingsController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,6 +33,14 @@ Route::prefix('sanchalak')->group(function () {
         Route::put('/in-the-news', [NewsController::class, 'update'])->name('admin.news.update');
         Route::get('/books', [BooksController::class, 'edit'])->name('admin.books.edit');
         Route::put('/books', [BooksController::class, 'update'])->name('admin.books.update');
+        Route::get('/research-publications', [ResearchController::class, 'edit'])->name('admin.research.edit');
+        Route::put('/research-publications', [ResearchController::class, 'update'])->name('admin.research.update');
+        Route::post('/research-publications/publications', [ResearchController::class, 'storePublication'])->name('admin.research.publications.store');
+        Route::delete('/research-publications/publications/{publication}', [ResearchController::class, 'destroyPublication'])->name('admin.research.publications.destroy');
+        Route::get('/research-publications/categories', [ResearchController::class, 'editCategories'])->name('admin.research.categories.edit');
+        Route::put('/research-publications/categories', [ResearchController::class, 'updateCategories'])->name('admin.research.categories.update');
+        Route::post('/research-publications/categories', [ResearchController::class, 'storeCategory'])->name('admin.research.categories.store');
+        Route::delete('/research-publications/categories/{category}', [ResearchController::class, 'destroyCategory'])->name('admin.research.categories.destroy');
         Route::get('/seo', [SeoSettingsController::class, 'edit'])->name('admin.seo.edit');
         Route::put('/seo', [SeoSettingsController::class, 'update'])->name('admin.seo.update');
         Route::post('/logout', [AuthController::class, 'destroy'])->name('admin.logout');

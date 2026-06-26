@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Industry;
 use App\Models\Page;
+use App\Models\ResearchPublication;
 use App\Models\SeoSetting;
 
 class PageSeo
@@ -45,7 +46,7 @@ class PageSeo
         $url = $this->pageUrl($page);
         $base = [
             '@context' => 'https://schema.org',
-            '@type' => in_array($page->key, ['industries', 'news', 'books'], true) ? 'CollectionPage' : 'WebPage',
+            '@type' => in_array($page->key, ['industries', 'news', 'books', 'research'], true) ? 'CollectionPage' : 'WebPage',
             '@id' => $url.'#webpage',
             'url' => $url,
             'name' => $page->seo_title,
@@ -162,6 +163,26 @@ class PageSeo
                             'name' => $item['title'] ?? null,
                         ],
                     ])))
+                ->values()
+                ->all();
+        }
+
+        if ($page->key === 'research') {
+            $base['hasPart'] = ResearchPublication::query()
+                ->with('category')
+                ->where('is_enabled', true)
+                ->whereHas('category', fn ($query) => $query->where('is_enabled', true))
+                ->orderBy('sort_order')
+                ->get()
+                ->map(fn (ResearchPublication $publication) => array_filter([
+                    '@type' => 'ScholarlyArticle',
+                    'headline' => $publication->title,
+                    'name' => $publication->title,
+                    'description' => $publication->summary,
+                    'datePublished' => $publication->year ? (string) $publication->year : null,
+                    'genre' => $publication->category?->label,
+                    'url' => $publication->url,
+                ]))
                 ->values()
                 ->all();
         }

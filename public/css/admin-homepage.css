@@ -198,7 +198,8 @@
 .cms-field input[type="number"],
 .cms-field textarea,
 .cms-field select,
-.cms-add-section input {
+.cms-add-section input,
+.cms-add-section select {
     width: 100%;
     padding: 12px 13px;
     border: 1px solid var(--admin-line);
@@ -218,7 +219,8 @@
 .cms-field input:focus,
 .cms-field textarea:focus,
 .cms-field select:focus,
-.cms-add-section input:focus {
+.cms-add-section input:focus,
+.cms-add-section select:focus {
     border-color: var(--admin-gold);
 }
 
@@ -291,6 +293,14 @@
     font-weight: 600;
     letter-spacing: .1em;
     text-transform: uppercase;
+}
+
+.cms-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 .cms-button-primary {

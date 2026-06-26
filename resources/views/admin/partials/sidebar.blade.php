@@ -71,6 +71,16 @@
         </a>
 
         <a
+            class="sidebar-link {{ request()->routeIs('admin.research.*') ? 'is-active' : '' }}"
+            href="{{ route('admin.research.edit') }}"
+        >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M5 4h14v2H5V4Zm0 4h8v2H5V8Zm0 4h14v2H5v-2Zm0 4h8v2H5v-2Zm10-8h4v10h-4V8Z"/>
+            </svg>
+            <span>Research</span>
+        </a>
+
+        <a
             class="sidebar-link {{ request()->routeIs('admin.seo.*') ? 'is-active' : '' }}"
             href="{{ route('admin.seo.edit') }}"
         >
