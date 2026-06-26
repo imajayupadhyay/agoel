@@ -14,7 +14,7 @@ class SeoSettingsTest extends TestCase
     public function test_admin_can_open_global_seo_settings(): void
     {
         $this->actingAs($this->admin())
-            ->get('/sanchalak/seo')
+            ->get('/edit99/seo')
             ->assertOk()
             ->assertSee('Global SEO settings')
             ->assertSee('robots.txt')
@@ -27,7 +27,7 @@ class SeoSettingsTest extends TestCase
 
         $this->get('/robots.txt')
             ->assertOk()
-            ->assertSee('Disallow: /sanchalak', false)
+            ->assertDontSee('edit99', false)
             ->assertSee(route('sitemap'), false);
 
         $this->get('/sitemap.xml')
@@ -45,7 +45,7 @@ class SeoSettingsTest extends TestCase
         $sitemap = '<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>https://example.com/custom</loc></url></urlset>';
 
         $this->actingAs($this->admin())
-            ->put('/sanchalak/seo', [
+            ->put('/edit99/seo', [
                 'site_name' => 'Anmol Pushjai Goel',
                 'robots_override_enabled' => 1,
                 'robots_content' => $robots,
@@ -68,7 +68,7 @@ class SeoSettingsTest extends TestCase
     public function test_invalid_sitemap_override_is_rejected(): void
     {
         $this->actingAs($this->admin())
-            ->put('/sanchalak/seo', [
+            ->put('/edit99/seo', [
                 'site_name' => 'Anmol Pushjai Goel',
                 'robots_override_enabled' => 0,
                 'sitemap_override_enabled' => 1,
@@ -105,7 +105,7 @@ class SeoSettingsTest extends TestCase
         $user = User::factory()->create(['email' => 'person@example.com']);
 
         $this->actingAs($user)
-            ->get('/sanchalak/seo')
+            ->get('/edit99/seo')
             ->assertForbidden();
     }
 

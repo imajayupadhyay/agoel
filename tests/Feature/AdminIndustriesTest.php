@@ -17,7 +17,7 @@ class AdminIndustriesTest extends TestCase
     public function test_admin_can_open_the_industries_editor(): void
     {
         $this->actingAs($this->admin())
-            ->get('/sanchalak/industries')
+            ->get('/edit99/industries')
             ->assertOk()
             ->assertSee('Manage the Industries page')
             ->assertSee('SEO & Publishing', false)
@@ -51,7 +51,7 @@ class AdminIndustriesTest extends TestCase
         $payload['industries'][$technology->id]['body_before'] = 'A newly managed investment thesis.';
 
         $this->actingAs($this->admin())
-            ->put('/sanchalak/industries', $payload)
+            ->put('/edit99/industries', $payload)
             ->assertRedirect()
             ->assertSessionHas('status');
 
@@ -74,7 +74,7 @@ class AdminIndustriesTest extends TestCase
             ->image('technology.jpg', 1200, 900);
 
         $this->actingAs($this->admin())
-            ->put('/sanchalak/industries', $payload)
+            ->put('/edit99/industries', $payload)
             ->assertRedirect();
 
         $technology->refresh();
@@ -88,7 +88,7 @@ class AdminIndustriesTest extends TestCase
         $admin = $this->admin();
 
         $this->actingAs($admin)
-            ->post('/sanchalak/industries/items', ['name' => 'Healthcare'])
+            ->post('/edit99/industries/items', ['name' => 'Healthcare'])
             ->assertRedirect()
             ->assertSessionHas('status');
 
@@ -97,7 +97,7 @@ class AdminIndustriesTest extends TestCase
         $this->assertFalse($industry->is_enabled);
 
         $this->actingAs($admin)
-            ->delete("/sanchalak/industries/items/{$industry->id}")
+            ->delete("/edit99/industries/items/{$industry->id}")
             ->assertRedirect();
 
         $this->assertDatabaseMissing('industries', ['id' => $industry->id]);
@@ -121,7 +121,7 @@ class AdminIndustriesTest extends TestCase
         $user = User::factory()->create(['email' => 'person@example.com']);
 
         $this->actingAs($user)
-            ->get('/sanchalak/industries')
+            ->get('/edit99/industries')
             ->assertForbidden();
     }
 

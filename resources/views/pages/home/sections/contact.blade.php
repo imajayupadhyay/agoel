@@ -43,5 +43,6 @@
   <div class="foot-base">
     <span>© <span id="yr"></span> {{ $content['copyright_name'] ?? '' }}. All rights reserved.</span>
     <span>{{ $content['strapline'] ?? '' }}</span>
+    <a class="foot-sitemap" href="{{ route('sitemap') }}">sitemap.xml</a>
   </div>
 </footer>

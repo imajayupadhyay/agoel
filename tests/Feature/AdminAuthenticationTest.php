@@ -12,7 +12,7 @@ class AdminAuthenticationTest extends TestCase
 
     public function test_admin_login_page_is_available(): void
     {
-        $this->get('/sanchalak')
+        $this->get('/edit99')
             ->assertOk()
             ->assertSee('Admin login')
             ->assertSee('noindex, nofollow', false);
@@ -20,8 +20,8 @@ class AdminAuthenticationTest extends TestCase
 
     public function test_guest_is_redirected_to_admin_login(): void
     {
-        $this->get('/sanchalak/dashboard')
-            ->assertRedirect('/sanchalak');
+        $this->get('/edit99/dashboard')
+            ->assertRedirect('/edit99');
     }
 
     public function test_admin_can_login_and_view_dashboard(): void
@@ -32,14 +32,14 @@ class AdminAuthenticationTest extends TestCase
             'password' => 'TestPassword@123',
         ]);
 
-        $this->post('/sanchalak', [
+        $this->post('/edit99', [
             'email' => 'admin@gmail.com',
             'password' => 'TestPassword@123',
-        ])->assertRedirect('/sanchalak/dashboard');
+        ])->assertRedirect('/edit99/dashboard');
 
         $this->assertAuthenticated();
 
-        $this->get('/sanchalak/dashboard')
+        $this->get('/edit99/dashboard')
             ->assertOk()
             ->assertSee('Hello, Admin.')
             ->assertSee('admin@gmail.com')
@@ -57,10 +57,10 @@ class AdminAuthenticationTest extends TestCase
             'password' => 'TestPassword@123',
         ]);
 
-        $this->from('/sanchalak')->post('/sanchalak', [
+        $this->from('/edit99')->post('/edit99', [
             'email' => 'admin@gmail.com',
             'password' => 'incorrect-password',
-        ])->assertRedirect('/sanchalak')
+        ])->assertRedirect('/edit99')
             ->assertSessionHasErrors('email');
 
         $this->assertGuest();
@@ -73,7 +73,7 @@ class AdminAuthenticationTest extends TestCase
         ]);
 
         $this->actingAs($user)
-            ->get('/sanchalak/dashboard')
+            ->get('/edit99/dashboard')
             ->assertForbidden();
     }
 
@@ -84,8 +84,8 @@ class AdminAuthenticationTest extends TestCase
         ]);
 
         $this->actingAs($admin)
-            ->post('/sanchalak/logout')
-            ->assertRedirect('/sanchalak');
+            ->post('/edit99/logout')
+            ->assertRedirect('/edit99');
 
         $this->assertGuest();
     }

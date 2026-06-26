@@ -207,7 +207,7 @@
   }
   @media(max-width:900px){
     nav{position:fixed;inset:0;background:var(--ink);flex-direction:column;justify-content:center;gap:26px;transform:translateX(100%);transition:transform .5s var(--ease);z-index:55}
-    body.menu-open nav{transform:none}
+    body.menu-open header{backdrop-filter:none;-webkit-backdrop-filter:none}body.menu-open nav{transform:none}
     nav a{font-size:17px}
     .burger{display:block;z-index:56}
   }
@@ -230,3 +230,6 @@
     .col-track{transform:none!important}
     html{scroll-behavior:auto}
   }
+
+.foot-sitemap{color:var(--muted-d);transition:color .3s}
+.foot-sitemap:hover{color:var(--gold)}

@@ -16,7 +16,7 @@ class AdminHomepageTest extends TestCase
     public function test_admin_can_open_the_sectioned_homepage_editor(): void
     {
         $this->actingAs($this->admin())
-            ->get('/sanchalak/homepage')
+            ->get('/edit99/homepage')
             ->assertOk()
             ->assertSee('Manage the homepage')
             ->assertSee('SEO & Publishing', false)
@@ -44,7 +44,7 @@ class AdminHomepageTest extends TestCase
         $payload['sections'][$creed->id]['is_enabled'] = 0;
 
         $this->actingAs($this->admin())
-            ->put('/sanchalak/homepage', $payload)
+            ->put('/edit99/homepage', $payload)
             ->assertRedirect()
             ->assertSessionHas('status');
 
@@ -74,7 +74,7 @@ class AdminHomepageTest extends TestCase
             ->image('portrait.jpg', 1000, 1400);
 
         $this->actingAs($this->admin())
-            ->put('/sanchalak/homepage', $payload)
+            ->put('/edit99/homepage', $payload)
             ->assertRedirect();
 
         $hero->refresh();
@@ -101,7 +101,7 @@ class AdminHomepageTest extends TestCase
         $payload['page']['sitemap_priority'] = 0.9;
 
         $this->actingAs($this->admin())
-            ->put('/sanchalak/homepage', $payload)
+            ->put('/edit99/homepage', $payload)
             ->assertRedirect()
             ->assertSessionHas('status');
 
@@ -126,7 +126,7 @@ class AdminHomepageTest extends TestCase
         $payload['page']['schema_markup'] = '{"@context":';
 
         $this->actingAs($this->admin())
-            ->put('/sanchalak/homepage', $payload)
+            ->put('/edit99/homepage', $payload)
             ->assertSessionHasErrors('page.schema_markup');
     }
 
@@ -135,7 +135,7 @@ class AdminHomepageTest extends TestCase
         $admin = $this->admin();
 
         $this->actingAs($admin)
-            ->post('/sanchalak/homepage/sections', ['name' => 'New Initiative'])
+            ->post('/edit99/homepage/sections', ['name' => 'New Initiative'])
             ->assertRedirect()
             ->assertSessionHas('status');
 
@@ -145,7 +145,7 @@ class AdminHomepageTest extends TestCase
         $this->assertTrue($section->is_custom);
 
         $this->actingAs($admin)
-            ->delete("/sanchalak/homepage/sections/{$section->id}")
+            ->delete("/edit99/homepage/sections/{$section->id}")
             ->assertRedirect();
 
         $this->assertDatabaseMissing('page_sections', ['id' => $section->id]);
@@ -156,7 +156,7 @@ class AdminHomepageTest extends TestCase
         $admin = $this->admin();
 
         $this->actingAs($admin)
-            ->post('/sanchalak/homepage/sections', ['name' => 'New Initiative'])
+            ->post('/edit99/homepage/sections', ['name' => 'New Initiative'])
             ->assertRedirect();
 
         $page = $this->homepage();
@@ -174,7 +174,7 @@ class AdminHomepageTest extends TestCase
         ];
 
         $this->actingAs($admin)
-            ->put('/sanchalak/homepage', $payload)
+            ->put('/edit99/homepage', $payload)
             ->assertRedirect();
 
         $this->get('/')
@@ -189,7 +189,7 @@ class AdminHomepageTest extends TestCase
         $user = User::factory()->create(['email' => 'person@example.com']);
 
         $this->actingAs($user)
-            ->get('/sanchalak/homepage')
+            ->get('/edit99/homepage')
             ->assertForbidden();
     }
 

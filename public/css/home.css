@@ -223,7 +223,7 @@
   /* ---------- responsive ---------- */
   @media(max-width:900px){
     nav{position:fixed;inset:0;background:var(--ink);flex-direction:column;justify-content:center;gap:26px;transform:translateX(100%);transition:transform .5s var(--ease);z-index:55}
-    body.menu-open nav{transform:none}
+    body.menu-open header{backdrop-filter:none;-webkit-backdrop-filter:none}body.menu-open nav{transform:none}
     nav a{font-size:17px}
     .burger{display:block;z-index:56}
     .hero-grid{grid-template-columns:1fr;gap:40px}
@@ -337,3 +337,6 @@
   .custom-home-button{display:inline-flex;margin-top:26px;padding:12px 18px;border:1px solid var(--gold);color:inherit;font-size:11px;letter-spacing:.16em;text-transform:uppercase;transition:background .3s,color .3s}
   .custom-home-button:hover{background:var(--gold);color:var(--ink)}
   @media(max-width:900px){.custom-home-grid{grid-template-columns:1fr}}
+
+.foot-sitemap{color:var(--muted-d);transition:color .3s}
+.foot-sitemap:hover{color:var(--gold)}

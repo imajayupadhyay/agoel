@@ -120,10 +120,13 @@
 
   @media(max-width:900px){
     nav{position:fixed;inset:0;background:var(--ink);flex-direction:column;justify-content:center;gap:26px;transform:translateX(100%);transition:transform .5s var(--ease);z-index:55}
-    body.menu-open nav{transform:none}nav a{font-size:17px}.burger{display:block;z-index:56}
+    body.menu-open header{backdrop-filter:none;-webkit-backdrop-filter:none}body.menu-open nav{transform:none}nav a{font-size:17px}.burger{display:block;z-index:56}
     .reel-track{animation-duration:48s}
     .row{grid-template-columns:1fr auto;gap:6px 16px;row-gap:6px}
     .r-date{grid-column:1;order:1}.r-out{grid-column:1;order:2}
     .r-title{grid-column:1 / -1;order:4}.r-go{grid-column:2;order:3;align-self:start}
   }
   @media (prefers-reduced-motion:reduce){*{animation:none!important}.head h1 span,.subline,.hint,.ncard,.row{opacity:1!important;transform:none!important}}
+
+.foot-sitemap{color:var(--muted-d);transition:color .3s}
+.foot-sitemap:hover{color:var(--gold)}

@@ -43,6 +43,7 @@ class SiteTest extends TestCase
             ->assertSee($stylesheet, false)
             ->assertSee('rel="icon"', false)
             ->assertSee('favicon.svg', false)
+            ->assertSee('class="foot-sitemap" href="'.route('sitemap').'"', false)
             ->assertDontSee('data:image', false);
     }
 
@@ -75,7 +76,7 @@ class SiteTest extends TestCase
         $this->get('/robots.txt')
             ->assertOk()
             ->assertSee('Allow: /', false)
-            ->assertSee('Disallow: /sanchalak', false)
+            ->assertDontSee('edit99', false)
             ->assertSee(route('sitemap'), false);
     }
 

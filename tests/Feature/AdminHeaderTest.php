@@ -15,7 +15,7 @@ class AdminHeaderTest extends TestCase
     public function test_admin_can_open_the_header_editor(): void
     {
         $this->actingAs($this->admin())
-            ->get('/sanchalak/header')
+            ->get('/edit99/header')
             ->assertOk()
             ->assertSee('Manage the public header')
             ->assertSee('Brand')
@@ -60,7 +60,7 @@ class AdminHeaderTest extends TestCase
         ];
 
         $this->actingAs($this->admin())
-            ->put('/sanchalak/header', $payload)
+            ->put('/edit99/header', $payload)
             ->assertRedirect()
             ->assertSessionHas('status');
 
@@ -82,7 +82,7 @@ class AdminHeaderTest extends TestCase
             ->all();
 
         $this->actingAs($this->admin())
-            ->put('/sanchalak/header', $payload)
+            ->put('/edit99/header', $payload)
             ->assertRedirect();
 
         $this->assertDatabaseMissing('site_header_nav_items', ['label' => 'Books']);
@@ -98,9 +98,9 @@ class AdminHeaderTest extends TestCase
         $payload['nav_items'][0]['url'] = 'javascript:alert(1)';
 
         $this->actingAs($this->admin())
-            ->from('/sanchalak/header')
-            ->put('/sanchalak/header', $payload)
-            ->assertRedirect('/sanchalak/header')
+            ->from('/edit99/header')
+            ->put('/edit99/header', $payload)
+            ->assertRedirect('/edit99/header')
             ->assertSessionHasErrors('nav_items.0.url');
     }
 
@@ -109,7 +109,7 @@ class AdminHeaderTest extends TestCase
         $user = User::factory()->create(['email' => 'person@example.com']);
 
         $this->actingAs($user)
-            ->get('/sanchalak/header')
+            ->get('/edit99/header')
             ->assertForbidden();
     }
 

@@ -67,7 +67,7 @@
                                     <input name="robots_override_enabled" type="checkbox" value="1" @checked(old('robots_override_enabled', $settings->robots_override_enabled))>
                                     Override the automatically generated robots.txt
                                 </label>
-                                <small>The default permits public crawling, blocks Sanchalak, and advertises the sitemap.</small>
+                                <small>The default permits public crawling and advertises the sitemap. The admin area is kept private and is not listed here.</small>
                             </div>
 
                             <div class="cms-field cms-field-wide">

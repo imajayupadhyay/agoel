@@ -24,7 +24,7 @@ class AdminUsersTest extends TestCase
         ]);
 
         $this->actingAs($admin)
-            ->get('/sanchalak/users')
+            ->get('/edit99/users')
             ->assertOk()
             ->assertSee('Manage administrators')
             ->assertSee('Primary Admin')
@@ -39,13 +39,13 @@ class AdminUsersTest extends TestCase
         $admin = User::factory()->admin()->create();
 
         $this->actingAs($admin)
-            ->post('/sanchalak/users', [
+            ->post('/edit99/users', [
                 'name' => 'Second Admin',
                 'email' => 'second-admin@example.com',
                 'password' => 'NewAdminPass123',
                 'password_confirmation' => 'NewAdminPass123',
             ])
-            ->assertRedirect('/sanchalak/users');
+            ->assertRedirect('/edit99/users');
 
         $created = User::query()->where('email', 'second-admin@example.com')->firstOrFail();
 
@@ -62,11 +62,11 @@ class AdminUsersTest extends TestCase
         ]);
 
         $this->actingAs($admin)
-            ->put("/sanchalak/users/{$user->id}", [
+            ->put("/edit99/users/{$user->id}", [
                 'name' => 'New Name',
                 'email' => 'new@example.com',
             ])
-            ->assertRedirect('/sanchalak/users');
+            ->assertRedirect('/edit99/users');
 
         $user->refresh();
 
@@ -88,16 +88,16 @@ class AdminUsersTest extends TestCase
         ]);
 
         $this->actingAs(User::query()->where('email', 'admin@example.com')->first())
-            ->put("/sanchalak/users/{$target->id}/password", [
+            ->put("/edit99/users/{$target->id}/password", [
                 'password' => 'UpdatedTargetPass123',
                 'password_confirmation' => 'UpdatedTargetPass123',
             ])
-            ->assertRedirect('/sanchalak/users');
+            ->assertRedirect('/edit99/users');
 
-        $this->post('/sanchalak', [
+        $this->post('/edit99', [
             'email' => 'target-admin@example.com',
             'password' => 'UpdatedTargetPass123',
-        ])->assertRedirect('/sanchalak/dashboard');
+        ])->assertRedirect('/edit99/dashboard');
     }
 
     public function test_admin_cannot_delete_own_account(): void
@@ -105,7 +105,7 @@ class AdminUsersTest extends TestCase
         $admin = User::factory()->admin()->create();
 
         $this->actingAs($admin)
-            ->delete("/sanchalak/users/{$admin->id}")
+            ->delete("/edit99/users/{$admin->id}")
             ->assertSessionHasErrors('user');
 
         $this->assertDatabaseHas('users', ['id' => $admin->id]);
@@ -116,7 +116,7 @@ class AdminUsersTest extends TestCase
         $user = User::factory()->create();
 
         $this->actingAs($user)
-            ->get('/sanchalak/users')
+            ->get('/edit99/users')
             ->assertForbidden();
     }
 }

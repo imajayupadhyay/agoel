@@ -50,6 +50,7 @@
 <footer class="error-footer">
   <span>&copy; {{ now()->year }} Anmol Pushjai Goel. All rights reserved.</span>
   <a href="{{ route('about') }}">About Anmol Goel</a>
+  <a class="foot-sitemap" href="{{ route('sitemap') }}">sitemap.xml</a>
 </footer>
 <script src="{{ asset('js/error.js') }}"></script>
 </body>

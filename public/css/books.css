@@ -194,9 +194,12 @@
 
   @media(max-width:900px){
     nav{position:fixed;inset:0;background:var(--ink);flex-direction:column;justify-content:center;gap:26px;transform:translateX(100%);transition:transform .5s var(--ease);z-index:55}
-    body.menu-open nav{transform:none}nav a{font-size:17px}.burger{display:block;z-index:56}
+    body.menu-open header{backdrop-filter:none;-webkit-backdrop-filter:none}body.menu-open nav{transform:none}nav a{font-size:17px}.burger{display:block;z-index:56}
     .rev-grid{grid-template-columns:1fr}
     .close .wrap{grid-template-columns:1fr;gap:34px;min-height:0}
     .aznav{top:58px}
   }
   @media (prefers-reduced-motion:reduce){*{animation:none!important}.reveal,.manifesto p,.manifesto .sign,.spine{opacity:1!important;transform:none!important}}
+
+.foot-sitemap{color:var(--muted-d);transition:color .3s}
+.foot-sitemap:hover{color:var(--gold)}

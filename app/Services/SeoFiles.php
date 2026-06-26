@@ -32,7 +32,7 @@ class SeoFiles
 
     public function defaultRobots(): string
     {
-        return "User-agent: *\nAllow: /\nDisallow: /sanchalak\nSitemap: ".route('sitemap')."\n";
+        return "User-agent: *\nAllow: /\nSitemap: ".route('sitemap')."\n";
     }
 
     public function defaultSitemap(): string

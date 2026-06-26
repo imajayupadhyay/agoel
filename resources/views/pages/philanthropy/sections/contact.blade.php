@@ -20,5 +20,6 @@
   <div class="foot-base">
     <span>&copy; <span id="yr">{{ now()->year }}</span> {{ $content['copyright_name'] ?? '' }}</span>
     <span>{{ $content['footer_role'] ?? '' }}</span>
+    <a class="foot-sitemap" href="{{ route('sitemap') }}">sitemap.xml</a>
   </div>
 </footer>

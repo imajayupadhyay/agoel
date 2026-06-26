@@ -15,7 +15,7 @@ use App\Http\Controllers\Admin\SeoSettingsController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('sanchalak')->group(function () {
+Route::prefix('edit99')->group(function () {
     Route::get('/', [AuthController::class, 'create'])->name('login');
     Route::post('/', [AuthController::class, 'store'])
         ->middleware('throttle:5,1')

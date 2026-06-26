@@ -18,7 +18,7 @@ class AdminResearchTest extends TestCase
     public function test_admin_can_open_the_research_editor(): void
     {
         $this->actingAs($this->admin())
-            ->get('/sanchalak/research-publications')
+            ->get('/edit99/research-publications')
             ->assertOk()
             ->assertSee('Manage the Research &amp; Publications page', false)
             ->assertSee('SEO & Publishing', false)
@@ -31,7 +31,7 @@ class AdminResearchTest extends TestCase
     public function test_admin_can_open_the_research_categories_editor(): void
     {
         $this->actingAs($this->admin())
-            ->get('/sanchalak/research-publications/categories')
+            ->get('/edit99/research-publications/categories')
             ->assertOk()
             ->assertSee('Research Categories')
             ->assertSee('Articles')
@@ -68,7 +68,7 @@ class AdminResearchTest extends TestCase
         $payload['publications'][$publication->id]['tags'][0] = 'managed tag';
 
         $this->actingAs($this->admin())
-            ->put('/sanchalak/research-publications', $payload)
+            ->put('/edit99/research-publications', $payload)
             ->assertRedirect()
             ->assertSessionHas('status');
 
@@ -91,7 +91,7 @@ class AdminResearchTest extends TestCase
         $payload['categories'][$study->id]['is_enabled'] = 0;
 
         $this->actingAs($this->admin())
-            ->put('/sanchalak/research-publications/categories', $payload)
+            ->put('/edit99/research-publications/categories', $payload)
             ->assertRedirect()
             ->assertSessionHas('status');
 
@@ -107,7 +107,7 @@ class AdminResearchTest extends TestCase
         $category = ResearchCategory::query()->firstOrFail();
 
         $this->actingAs($admin)
-            ->post('/sanchalak/research-publications/publications', [
+            ->post('/edit99/research-publications/publications', [
                 'research_category_id' => $category->id,
                 'title' => 'Draft Publication',
             ])
@@ -119,7 +119,7 @@ class AdminResearchTest extends TestCase
         $this->assertFalse($publication->is_enabled);
 
         $this->actingAs($admin)
-            ->delete("/sanchalak/research-publications/publications/{$publication->id}")
+            ->delete("/edit99/research-publications/publications/{$publication->id}")
             ->assertRedirect();
 
         $this->assertDatabaseMissing('research_publications', ['id' => $publication->id]);
@@ -130,7 +130,7 @@ class AdminResearchTest extends TestCase
         $admin = $this->admin();
 
         $this->actingAs($admin)
-            ->post('/sanchalak/research-publications/categories', ['name' => 'Policy Notes'])
+            ->post('/edit99/research-publications/categories', ['name' => 'Policy Notes'])
             ->assertRedirect()
             ->assertSessionHas('status');
 
@@ -139,7 +139,7 @@ class AdminResearchTest extends TestCase
         $this->assertFalse($category->is_enabled);
 
         $this->actingAs($admin)
-            ->delete("/sanchalak/research-publications/categories/{$category->id}")
+            ->delete("/edit99/research-publications/categories/{$category->id}")
             ->assertRedirect();
 
         $this->assertDatabaseMissing('research_categories', ['id' => $category->id]);
@@ -150,7 +150,7 @@ class AdminResearchTest extends TestCase
         $category = ResearchCategory::query()->whereHas('publications')->firstOrFail();
 
         $this->actingAs($this->admin())
-            ->delete("/sanchalak/research-publications/categories/{$category->id}")
+            ->delete("/edit99/research-publications/categories/{$category->id}")
             ->assertRedirect()
             ->assertSessionHasErrors('category');
 
@@ -172,7 +172,7 @@ class AdminResearchTest extends TestCase
             ->image('field.jpg', 1200, 900);
 
         $this->actingAs($this->admin())
-            ->put('/sanchalak/research-publications', $payload)
+            ->put('/edit99/research-publications', $payload)
             ->assertRedirect();
 
         $index->refresh();
@@ -203,7 +203,7 @@ class AdminResearchTest extends TestCase
         $user = User::factory()->create(['email' => 'person@example.com']);
 
         $this->actingAs($user)
-            ->get('/sanchalak/research-publications')
+            ->get('/edit99/research-publications')
             ->assertForbidden();
     }
 

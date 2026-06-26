@@ -16,7 +16,7 @@ class AdminNewsTest extends TestCase
     public function test_admin_can_open_the_news_editor(): void
     {
         $this->actingAs($this->admin())
-            ->get('/sanchalak/in-the-news')
+            ->get('/edit99/in-the-news')
             ->assertOk()
             ->assertSee('Manage the In the News page')
             ->assertSee('SEO & Publishing', false)
@@ -52,7 +52,7 @@ class AdminNewsTest extends TestCase
         $payload['sections'][$index->id]['content']['syndication_text'] = 'Managed syndication copy.';
 
         $this->actingAs($this->admin())
-            ->put('/sanchalak/in-the-news', $payload)
+            ->put('/edit99/in-the-news', $payload)
             ->assertRedirect()
             ->assertSessionHas('status');
 
@@ -79,7 +79,7 @@ class AdminNewsTest extends TestCase
             ->image('coverage.jpg', 1200, 900);
 
         $this->actingAs($this->admin())
-            ->put('/sanchalak/in-the-news', $payload)
+            ->put('/edit99/in-the-news', $payload)
             ->assertRedirect();
 
         $hero->refresh();
@@ -102,7 +102,7 @@ class AdminNewsTest extends TestCase
         $user = User::factory()->create(['email' => 'person@example.com']);
 
         $this->actingAs($user)
-            ->get('/sanchalak/in-the-news')
+            ->get('/edit99/in-the-news')
             ->assertForbidden();
     }
 

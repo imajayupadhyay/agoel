@@ -16,7 +16,7 @@ class AdminBooksTest extends TestCase
     public function test_admin_can_open_the_books_editor(): void
     {
         $this->actingAs($this->admin())
-            ->get('/sanchalak/books')
+            ->get('/edit99/books')
             ->assertOk()
             ->assertSee('Manage the Books page')
             ->assertSee('SEO & Publishing', false)
@@ -58,7 +58,7 @@ class AdminBooksTest extends TestCase
         $payload['sections'][$reviews->id]['content']['reviews'][0]['body'] = 'Managed review paragraph one.'."\n\n".'Managed review paragraph two.';
 
         $this->actingAs($this->admin())
-            ->put('/sanchalak/books', $payload)
+            ->put('/edit99/books', $payload)
             ->assertRedirect()
             ->assertSessionHas('status');
 
@@ -87,7 +87,7 @@ class AdminBooksTest extends TestCase
             ->image('portrait.jpg', 900, 1200);
 
         $this->actingAs($this->admin())
-            ->put('/sanchalak/books', $payload)
+            ->put('/edit99/books', $payload)
             ->assertRedirect();
 
         $hero->refresh();
@@ -111,7 +111,7 @@ class AdminBooksTest extends TestCase
         $user = User::factory()->create(['email' => 'person@example.com']);
 
         $this->actingAs($user)
-            ->get('/sanchalak/books')
+            ->get('/edit99/books')
             ->assertForbidden();
     }
 

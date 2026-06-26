@@ -91,14 +91,14 @@ class NewsletterTest extends TestCase
         $admin = $this->admin();
 
         $this->actingAs($admin)
-            ->get('/sanchalak/newsletters?status=active')
+            ->get('/edit99/newsletters?status=active')
             ->assertOk()
             ->assertSee('Newsletter subscriptions')
             ->assertSee('active@example.com')
             ->assertDontSee('old@example.com');
 
         $this->actingAs($admin)
-            ->patch("/sanchalak/newsletters/{$active->id}", ['status' => 'unsubscribed'])
+            ->patch("/edit99/newsletters/{$active->id}", ['status' => 'unsubscribed'])
             ->assertRedirect();
 
         $active->refresh();
@@ -106,7 +106,7 @@ class NewsletterTest extends TestCase
         $this->assertNotNull($active->unsubscribed_at);
 
         $this->actingAs($admin)
-            ->delete("/sanchalak/newsletters/{$active->id}")
+            ->delete("/edit99/newsletters/{$active->id}")
             ->assertRedirect();
 
         $this->assertDatabaseMissing('newsletter_subscribers', [
@@ -119,7 +119,7 @@ class NewsletterTest extends TestCase
         $user = User::factory()->create(['email' => 'person@example.com']);
 
         $this->actingAs($user)
-            ->get('/sanchalak/newsletters')
+            ->get('/edit99/newsletters')
             ->assertForbidden();
     }
 

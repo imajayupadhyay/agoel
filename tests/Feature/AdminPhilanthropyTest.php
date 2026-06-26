@@ -16,7 +16,7 @@ class AdminPhilanthropyTest extends TestCase
     public function test_admin_can_open_the_philanthropy_editor(): void
     {
         $this->actingAs($this->admin())
-            ->get('/sanchalak/philanthropy')
+            ->get('/edit99/philanthropy')
             ->assertOk()
             ->assertSee('Manage the Philanthropy page')
             ->assertSee('SEO & Publishing', false)
@@ -53,7 +53,7 @@ class AdminPhilanthropyTest extends TestCase
         $payload['sections'][$organizations->id]['content']['items'][0]['description'] = 'Managed through the Philanthropy CMS.';
 
         $this->actingAs($this->admin())
-            ->put('/sanchalak/philanthropy', $payload)
+            ->put('/edit99/philanthropy', $payload)
             ->assertRedirect()
             ->assertSessionHas('status');
 
@@ -89,7 +89,7 @@ class AdminPhilanthropyTest extends TestCase
             ->image('organization.jpg', 1200, 800);
 
         $this->actingAs($this->admin())
-            ->put('/sanchalak/philanthropy', $payload)
+            ->put('/edit99/philanthropy', $payload)
             ->assertRedirect();
 
         $hero->refresh();
@@ -118,7 +118,7 @@ class AdminPhilanthropyTest extends TestCase
         array_shift($payload['sections'][$principles->id]['content']['items']);
 
         $this->actingAs($this->admin())
-            ->put('/sanchalak/philanthropy', $payload)
+            ->put('/edit99/philanthropy', $payload)
             ->assertRedirect();
 
         $this->get('/philanthropy')
@@ -139,7 +139,7 @@ class AdminPhilanthropyTest extends TestCase
         $user = User::factory()->create(['email' => 'person@example.com']);
 
         $this->actingAs($user)
-            ->get('/sanchalak/philanthropy')
+            ->get('/edit99/philanthropy')
             ->assertForbidden();
     }
 

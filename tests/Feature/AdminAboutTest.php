@@ -16,7 +16,7 @@ class AdminAboutTest extends TestCase
     public function test_admin_can_open_the_about_editor(): void
     {
         $this->actingAs($this->admin())
-            ->get('/sanchalak/about-anmol-goel')
+            ->get('/edit99/about-anmol-goel')
             ->assertOk()
             ->assertSee('Manage the About Anmol Goel page')
             ->assertSee('SEO & Publishing', false)
@@ -57,7 +57,7 @@ class AdminAboutTest extends TestCase
         $payload['sections'][$voice->id]['content']['quotes'][0]['text'] = 'Managed voice quote.';
 
         $this->actingAs($this->admin())
-            ->put('/sanchalak/about-anmol-goel', $payload)
+            ->put('/edit99/about-anmol-goel', $payload)
             ->assertRedirect()
             ->assertSessionHas('status');
 
@@ -85,7 +85,7 @@ class AdminAboutTest extends TestCase
             ->image('about-secondary.jpg', 1200, 900);
 
         $this->actingAs($this->admin())
-            ->put('/sanchalak/about-anmol-goel', $payload)
+            ->put('/edit99/about-anmol-goel', $payload)
             ->assertRedirect();
 
         $hero->refresh();
@@ -108,7 +108,7 @@ class AdminAboutTest extends TestCase
         $user = User::factory()->create(['email' => 'person@example.com']);
 
         $this->actingAs($user)
-            ->get('/sanchalak/about-anmol-goel')
+            ->get('/edit99/about-anmol-goel')
             ->assertForbidden();
     }
 
