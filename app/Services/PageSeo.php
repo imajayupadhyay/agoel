@@ -46,7 +46,11 @@ class PageSeo
         $url = $this->pageUrl($page);
         $base = [
             '@context' => 'https://schema.org',
-            '@type' => in_array($page->key, ['industries', 'news', 'books', 'research'], true) ? 'CollectionPage' : 'WebPage',
+            '@type' => match ($page->key) {
+                'industries', 'news', 'books', 'research' => 'CollectionPage',
+                'about' => 'AboutPage',
+                default => 'WebPage',
+            },
             '@id' => $url.'#webpage',
             'url' => $url,
             'name' => $page->seo_title,
@@ -199,6 +203,7 @@ class PageSeo
             'news' => route('news'),
             'books' => route('books'),
             'research' => route('research'),
+            'about' => route('about'),
             default => url($page->slug),
         };
     }

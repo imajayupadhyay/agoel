@@ -38,7 +38,7 @@ $pages = [
     <a href="{{ route('news') }}">In the News</a>
     <a href="{{ route('books') }}">Books</a>
     <a href="{{ route('research') }}">Research &amp; Publications</a>
-    <a href="{{ route('home') }}#meet">About Anmol Goel</a>
+    <a href="{{ route('about') }}">About Anmol Goel</a>
   </nav>
 HTML,
         'schema' => <<<'JSON'
@@ -108,7 +108,7 @@ JSON,
     <a href="{{ route('news') }}">In the News</a>
     <a href="{{ route('books') }}">Books</a>
     <a href="{{ route('research') }}">Research &amp; Publications</a>
-    <a href="{{ route('home') }}#meet">About Anmol Goel</a>
+    <a href="{{ route('about') }}">About Anmol Goel</a>
   </nav>
 HTML,
         'schema' => <<<'JSON'
@@ -163,7 +163,7 @@ JSON,
     <a href="{{ route('news') }}">In the News</a>
     <a href="{{ route('books') }}">Books</a>
     <a href="{{ route('research') }}">Research &amp; Publications</a>
-    <a href="{{ route('home') }}#meet">About Anmol Goel</a>
+    <a href="{{ route('about') }}">About Anmol Goel</a>
   </nav>
 HTML,
         'schema' => <<<'JSON'
@@ -188,6 +188,7 @@ JSON,
         'css' => $projectRoot.'/public/css/news.css',
         'js' => $projectRoot.'/public/js/news.js',
         'route' => 'news',
+        'preserve_output' => true,
         'og_image' => 'images/news/nuclear-edge-office.jpg',
         'embedded' => [
             'images/news/nuclear-edge-office.jpg',
@@ -211,7 +212,7 @@ JSON,
     <a href="#top" class="active">In the News</a>
     <a href="{{ route('books') }}">Books</a>
     <a href="{{ route('research') }}">Research &amp; Publications</a>
-    <a href="{{ route('home') }}#meet">About Anmol Goel</a>
+    <a href="{{ route('about') }}">About Anmol Goel</a>
   </nav>
 HTML,
         'schema' => <<<'JSON'
@@ -236,6 +237,7 @@ JSON,
         'css' => $projectRoot.'/public/css/books.css',
         'js' => $projectRoot.'/public/js/books.js',
         'route' => 'books',
+        'preserve_output' => true,
         'og_image' => 'images/books/hero-library.jpg',
         'embedded' => [
             'images/books/hero-library.jpg',
@@ -258,7 +260,7 @@ JSON,
     <a href="{{ route('news') }}">In the News</a>
     <a href="#top" class="active">Books</a>
     <a href="{{ route('research') }}">Research &amp; Publications</a>
-    <a href="{{ route('home') }}#meet">About Anmol Goel</a>
+    <a href="{{ route('about') }}">About Anmol Goel</a>
   </nav>
 HTML,
         'schema' => <<<'JSON'
@@ -283,6 +285,7 @@ JSON,
         'css' => $projectRoot.'/public/css/research.css',
         'js' => $projectRoot.'/public/js/research.js',
         'route' => 'research',
+        'preserve_output' => true,
         'og_image' => 'images/research/research-hero-collage.jpg',
         'embedded' => [
             'images/research/research-hero-collage.jpg',
@@ -316,7 +319,7 @@ JSON,
     <a href="{{ route('news') }}">In the News</a>
     <a href="{{ route('books') }}">Books</a>
     <a href="#top" class="active">Research &amp; Publications</a>
-    <a href="{{ route('home') }}#meet">About Anmol Goel</a>
+    <a href="{{ route('about') }}">About Anmol Goel</a>
   </nav>
 HTML,
         'schema' => <<<'JSON'
@@ -335,6 +338,48 @@ HTML,
 }
 JSON,
     ],
+    'about' => [
+        'source' => $sourceRoot.'/2About_AG .html',
+        'view' => $projectRoot.'/resources/views/pages/about.blade.php',
+        'css' => $projectRoot.'/public/css/about.css',
+        'js' => $projectRoot.'/public/js/about.js',
+        'route' => 'about',
+        'preserve_output' => true,
+        'og_image' => 'images/about/anmol-pushjai-goel-portrait-hero.jpg',
+        'embedded' => [
+            'images/about/anmol-pushjai-goel-portrait-hero.jpg',
+            'images/about/anmol-pushjai-goel-portrait-secondary.jpg',
+        ],
+        'links' => [
+            'href="#top" class="brand"' => 'href="{{ route(\'home\') }}" class="brand"',
+        ],
+        'navigation' => <<<'HTML'
+  <nav id="nav">
+    <a href="{{ route('industries') }}">Industries</a>
+    <a href="{{ route('philanthropy') }}">Philanthropy</a>
+    <a href="{{ route('news') }}">In the News</a>
+    <a href="{{ route('books') }}">Books</a>
+    <a href="{{ route('research') }}">Research &amp; Publications</a>
+    <a href="#top" class="active">About Anmol Goel</a>
+  </nav>
+HTML,
+        'schema' => <<<'JSON'
+{
+  "@context": "https://schema.org",
+  "@type": "AboutPage",
+  "name": "About — Anmol Pushjai Goel",
+  "url": "{{ route('about') }}",
+  "description": "About Anmol Pushjai Goel — Founder & CEO of Nuclear Edge, Trustee of the Bharat Governance Council, and a leading Indian voice on AI policy, technology and society.",
+  "inLanguage": "en-IN",
+  "about": {
+    "@type": "Person",
+    "name": "Anmol Pushjai Goel",
+    "url": "{{ route('about') }}",
+    "jobTitle": "Founder & CEO, Nuclear Edge"
+  }
+}
+JSON,
+    ],
 ];
 
 foreach ([
@@ -346,6 +391,7 @@ foreach ([
     $projectRoot.'/public/images/news',
     $projectRoot.'/public/images/books',
     $projectRoot.'/public/images/research',
+    $projectRoot.'/public/images/about',
 ] as $directory) {
     if (! is_dir($directory) && ! mkdir($directory, 0755, true) && ! is_dir($directory)) {
         throw new RuntimeException("Unable to create directory: {$directory}");

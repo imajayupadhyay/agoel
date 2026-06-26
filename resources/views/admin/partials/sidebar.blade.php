@@ -81,6 +81,16 @@
         </a>
 
         <a
+            class="sidebar-link {{ request()->routeIs('admin.about.*') ? 'is-active' : '' }}"
+            href="{{ route('admin.about.edit') }}"
+        >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0-6a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm7 15H5v-1c0-3.3 3.1-6 7-6s7 2.7 7 6v1Zm-11.8-2h9.6c-.6-1.7-2.5-3-4.8-3s-4.2 1.3-4.8 3Z"/>
+            </svg>
+            <span>About Anmol</span>
+        </a>
+
+        <a
             class="sidebar-link {{ request()->routeIs('admin.seo.*') ? 'is-active' : '' }}"
             href="{{ route('admin.seo.edit') }}"
         >

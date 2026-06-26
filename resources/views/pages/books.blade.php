@@ -67,7 +67,7 @@
     <a href="{{ route('news') }}">In the News</a>
     <a href="#top" class="active">Books</a>
     <a href="{{ route('research') }}">Research &amp; Publications</a>
-    <a href="{{ route('home') }}#meet">About Anmol Goel</a>
+    <a href="{{ route('about') }}">About Anmol Goel</a>
   </nav>
   <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
 </header>

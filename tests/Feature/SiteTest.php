@@ -19,6 +19,7 @@ class SiteTest extends TestCase
             'news' => ['/in-the-news', 'In the News — Anmol Pushjai Goel', 'news.css'],
             'books' => ['/books', 'The Library — Anmol Pushjai Goel', 'books.css'],
             'research' => ['/research-publications', 'Research &amp; Publications — Anmol Pushjai Goel', 'research.css'],
+            'about' => ['/about-anmol-goel', 'About — Anmol Pushjai Goel', 'about.css'],
         ];
     }
 
@@ -53,7 +54,8 @@ class SiteTest extends TestCase
             ->assertSee(route('philanthropy'), false)
             ->assertSee(route('news'), false)
             ->assertSee(route('books'), false)
-            ->assertSee(route('research'), false);
+            ->assertSee(route('research'), false)
+            ->assertSee(route('about'), false);
 
         $this->get('/robots.txt')
             ->assertOk()
@@ -64,7 +66,7 @@ class SiteTest extends TestCase
 
     public function test_navigation_uses_the_requested_menu_items(): void
     {
-        foreach (['/', '/industries', '/philanthropy', '/in-the-news', '/books', '/research-publications'] as $uri) {
+        foreach (['/', '/industries', '/philanthropy', '/in-the-news', '/books', '/research-publications', '/about-anmol-goel'] as $uri) {
             $this->get($uri)
                 ->assertOk()
                 ->assertSeeInOrder([
@@ -80,15 +82,17 @@ class SiteTest extends TestCase
 
     public function test_navigation_points_to_static_section_pages(): void
     {
-        foreach (['/', '/industries', '/philanthropy', '/in-the-news', '/books'] as $uri) {
+        foreach (['/', '/industries', '/philanthropy', '/in-the-news', '/books', '/research-publications'] as $uri) {
             $this->get($uri)
                 ->assertOk()
                 ->assertSee('href="'.route('news').'"', false)
                 ->assertSee('href="'.route('books').'"', false)
                 ->assertSee('href="'.route('research').'"', false)
+                ->assertSee('href="'.route('about').'"', false)
                 ->assertDontSee('href="'.route('home').'#news"', false)
                 ->assertDontSee('href="'.route('home').'#books"', false)
-                ->assertDontSee('href="'.route('home').'#research"', false);
+                ->assertDontSee('href="'.route('home').'#research"', false)
+                ->assertDontSee('href="'.route('home').'#meet"', false);
         }
     }
 
@@ -100,5 +104,6 @@ class SiteTest extends TestCase
         $this->get('/AG-IN THE NEWS.html')->assertRedirect('/in-the-news');
         $this->get('/BookAG.html')->assertRedirect('/books');
         $this->get('/AG-Research & Publications.html')->assertRedirect('/research-publications');
+        $this->get('/2About_AG .html')->assertRedirect('/about-anmol-goel');
     }
 }

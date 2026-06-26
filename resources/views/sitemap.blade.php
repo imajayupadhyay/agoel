@@ -9,6 +9,7 @@
             'news' => route('news'),
             'books' => route('books'),
             'research' => route('research'),
+            'about' => route('about'),
             default => url($page->slug),
         } }}</loc>
         <lastmod>{{ $page->updated_at->toDateString() }}</lastmod>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AboutController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\BooksController;
 use App\Http\Controllers\Admin\DashboardController;
@@ -41,6 +42,8 @@ Route::prefix('sanchalak')->group(function () {
         Route::put('/research-publications/categories', [ResearchController::class, 'updateCategories'])->name('admin.research.categories.update');
         Route::post('/research-publications/categories', [ResearchController::class, 'storeCategory'])->name('admin.research.categories.store');
         Route::delete('/research-publications/categories/{category}', [ResearchController::class, 'destroyCategory'])->name('admin.research.categories.destroy');
+        Route::get('/about-anmol-goel', [AboutController::class, 'edit'])->name('admin.about.edit');
+        Route::put('/about-anmol-goel', [AboutController::class, 'update'])->name('admin.about.update');
         Route::get('/seo', [SeoSettingsController::class, 'edit'])->name('admin.seo.edit');
         Route::put('/seo', [SeoSettingsController::class, 'update'])->name('admin.seo.update');
         Route::post('/logout', [AuthController::class, 'destroy'])->name('admin.logout');

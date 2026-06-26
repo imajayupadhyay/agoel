@@ -14,3 +14,4 @@ Route::permanentRedirect('/F3_Anmolweb-Philanthropy.html', '/philanthropy');
 Route::permanentRedirect('/AG-IN THE NEWS.html', '/in-the-news');
 Route::permanentRedirect('/BookAG.html', '/books');
 Route::permanentRedirect('/AG-Research & Publications.html', '/research-publications');
+Route::permanentRedirect('/2About_AG .html', '/about-anmol-goel');
