@@ -6,6 +6,9 @@
             'home' => route('home'),
             'industries' => route('industries'),
             'philanthropy' => route('philanthropy'),
+            'news' => route('news'),
+            'books' => route('books'),
+            'research' => route('research'),
             default => url($page->slug),
         } }}</loc>
         <lastmod>{{ $page->updated_at->toDateString() }}</lastmod>

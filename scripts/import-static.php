@@ -35,9 +35,9 @@ $pages = [
   <nav id="nav">
     <a href="{{ route('industries') }}">Industries</a>
     <a href="{{ route('philanthropy') }}">Philanthropy</a>
-    <a href="{{ route('home') }}#news">In the News</a>
-    <a href="{{ route('home') }}#books">Books</a>
-    <a href="{{ route('home') }}#research">Research &amp; Publications</a>
+    <a href="{{ route('news') }}">In the News</a>
+    <a href="{{ route('books') }}">Books</a>
+    <a href="{{ route('research') }}">Research &amp; Publications</a>
     <a href="{{ route('home') }}#meet">About Anmol Goel</a>
   </nav>
 HTML,
@@ -96,8 +96,8 @@ JSON,
         ],
         'links' => [
             'href="F1_Anmolweb-D.html#philanthropy"' => 'href="{{ route(\'philanthropy\') }}"',
-            'href="F1_Anmolweb-D.html#news"' => 'href="{{ route(\'home\') }}#news"',
-            'href="F1_Anmolweb-D.html#books"' => 'href="{{ route(\'home\') }}#books"',
+            'href="F1_Anmolweb-D.html#news"' => 'href="{{ route(\'news\') }}"',
+            'href="F1_Anmolweb-D.html#books"' => 'href="{{ route(\'books\') }}"',
             'href="F1_Anmolweb-D.html#top"' => 'href="{{ route(\'home\') }}"',
             'href="F1_Anmolweb-D.html"' => 'href="{{ route(\'home\') }}"',
         ],
@@ -105,9 +105,9 @@ JSON,
   <nav id="nav">
     <a href="#portfolio" class="active">Industries</a>
     <a href="{{ route('philanthropy') }}">Philanthropy</a>
-    <a href="{{ route('home') }}#news">In the News</a>
-    <a href="{{ route('home') }}#books">Books</a>
-    <a href="{{ route('home') }}#research">Research &amp; Publications</a>
+    <a href="{{ route('news') }}">In the News</a>
+    <a href="{{ route('books') }}">Books</a>
+    <a href="{{ route('research') }}">Research &amp; Publications</a>
     <a href="{{ route('home') }}#meet">About Anmol Goel</a>
   </nav>
 HTML,
@@ -150,8 +150,8 @@ JSON,
         ],
         'links' => [
             'href="F2_Anmolweb-Industries.html"' => 'href="{{ route(\'industries\') }}"',
-            'href="F1_Anmolweb-D.html#news"' => 'href="{{ route(\'home\') }}#news"',
-            'href="F1_Anmolweb-D.html#books"' => 'href="{{ route(\'home\') }}#books"',
+            'href="F1_Anmolweb-D.html#news"' => 'href="{{ route(\'news\') }}"',
+            'href="F1_Anmolweb-D.html#books"' => 'href="{{ route(\'books\') }}"',
             'href="F1_Anmolweb-D.html#top"' => 'href="{{ route(\'home\') }}"',
             'href="F1_Anmolweb-D.html"' => 'href="{{ route(\'home\') }}"',
             'href="#industries"' => 'href="{{ route(\'industries\') }}"',
@@ -160,9 +160,9 @@ JSON,
   <nav id="nav">
     <a href="{{ route('industries') }}">Industries</a>
     <a href="#top" class="active">Philanthropy</a>
-    <a href="{{ route('home') }}#news">In the News</a>
-    <a href="{{ route('home') }}#books">Books</a>
-    <a href="{{ route('home') }}#research">Research &amp; Publications</a>
+    <a href="{{ route('news') }}">In the News</a>
+    <a href="{{ route('books') }}">Books</a>
+    <a href="{{ route('research') }}">Research &amp; Publications</a>
     <a href="{{ route('home') }}#meet">About Anmol Goel</a>
   </nav>
 HTML,
@@ -182,6 +182,159 @@ HTML,
 }
 JSON,
     ],
+    'news' => [
+        'source' => $sourceRoot.'/AG-IN THE NEWS.html',
+        'view' => $projectRoot.'/resources/views/pages/news.blade.php',
+        'css' => $projectRoot.'/public/css/news.css',
+        'js' => $projectRoot.'/public/js/news.js',
+        'route' => 'news',
+        'og_image' => 'images/news/nuclear-edge-office.jpg',
+        'embedded' => [
+            'images/news/nuclear-edge-office.jpg',
+            'images/news/the-tribune-sociologist-entrepreneur.jpg',
+            'images/news/the-wire-ai-race.jpg',
+            'images/news/business-standard-nuclear-edge.jpg',
+            'images/news/wisconsin-journal-nuclear-edge.jpg',
+            'images/news/theprint-funds-should-be-last.jpg',
+        ],
+        'links' => [
+            'href="F1_Anmolweb-D.html#top"' => 'href="{{ route(\'home\') }}"',
+            'href="F1_Anmolweb-D.html"' => 'href="{{ route(\'home\') }}"',
+            'href="F2_Anmolweb-Industries.html"' => 'href="{{ route(\'industries\') }}"',
+            'href="F3_Anmolweb-Philanthropy.html"' => 'href="{{ route(\'philanthropy\') }}"',
+            'href="#contact" class="nav-cta"' => 'href="#contact" class="nav-cta"',
+        ],
+        'navigation' => <<<'HTML'
+  <nav id="nav">
+    <a href="{{ route('industries') }}">Industries</a>
+    <a href="{{ route('philanthropy') }}">Philanthropy</a>
+    <a href="#top" class="active">In the News</a>
+    <a href="{{ route('books') }}">Books</a>
+    <a href="{{ route('research') }}">Research &amp; Publications</a>
+    <a href="{{ route('home') }}#meet">About Anmol Goel</a>
+  </nav>
+HTML,
+        'schema' => <<<'JSON'
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "In the News — Anmol Pushjai Goel",
+  "url": "{{ route('news') }}",
+  "description": "Anmol Pushjai Goel in News — featured across The Tribune, The Wire, ThePrint, Business Standard, Wisconsin Journal and more.",
+  "inLanguage": "en-IN",
+  "about": {
+    "@type": "Person",
+    "name": "Anmol Pushjai Goel",
+    "url": "{{ route('home') }}"
+  }
+}
+JSON,
+    ],
+    'books' => [
+        'source' => $sourceRoot.'/BookAG.html',
+        'view' => $projectRoot.'/resources/views/pages/books.blade.php',
+        'css' => $projectRoot.'/public/css/books.css',
+        'js' => $projectRoot.'/public/js/books.js',
+        'route' => 'books',
+        'og_image' => 'images/books/hero-library.jpg',
+        'embedded' => [
+            'images/books/hero-library.jpg',
+            'images/books/library-shelves.jpg',
+            'images/books/bookstore-shelves.jpg',
+            'images/books/anmol-goel-library-portrait.jpg',
+        ],
+        'links' => [
+            'href="F1_Anmolweb-D.html#top"' => 'href="{{ route(\'home\') }}"',
+            'href="F1_Anmolweb-D.html"' => 'href="{{ route(\'home\') }}"',
+            'href="F2_Anmolweb-Industries.html"' => 'href="{{ route(\'industries\') }}"',
+            'href="F3_Anmolweb-Philanthropy.html"' => 'href="{{ route(\'philanthropy\') }}"',
+            'href="F4_Anmolweb-InTheNews.html"' => 'href="{{ route(\'news\') }}"',
+            'href="AG-IN THE NEWS.html"' => 'href="{{ route(\'news\') }}"',
+        ],
+        'navigation' => <<<'HTML'
+  <nav id="nav">
+    <a href="{{ route('industries') }}">Industries</a>
+    <a href="{{ route('philanthropy') }}">Philanthropy</a>
+    <a href="{{ route('news') }}">In the News</a>
+    <a href="#top" class="active">Books</a>
+    <a href="{{ route('research') }}">Research &amp; Publications</a>
+    <a href="{{ route('home') }}#meet">About Anmol Goel</a>
+  </nav>
+HTML,
+        'schema' => <<<'JSON'
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "The Library — Anmol Pushjai Goel",
+  "url": "{{ route('books') }}",
+  "description": "The personal library and reading manifesto of Anmol Pushjai Goel — annual reading lists from 2022, an A–Z shelf, and book reviews.",
+  "inLanguage": "en-IN",
+  "about": {
+    "@type": "Person",
+    "name": "Anmol Pushjai Goel",
+    "url": "{{ route('home') }}"
+  }
+}
+JSON,
+    ],
+    'research' => [
+        'source' => $sourceRoot.'/AG-Research & Publications.html',
+        'view' => $projectRoot.'/resources/views/pages/research.blade.php',
+        'css' => $projectRoot.'/public/css/research.css',
+        'js' => $projectRoot.'/public/js/research.js',
+        'route' => 'research',
+        'og_image' => 'images/research/research-hero-collage.jpg',
+        'embedded' => [
+            'images/research/research-hero-collage.jpg',
+            'images/research/sociology-psychology-technology-sign.jpg',
+            'images/research/steve-jobs-floor.jpg',
+            'images/research/anmol-goel-research-portrait.jpg',
+            'images/research/adam-smith-statue.jpg',
+            'images/research/karl-marx-portrait.jpg',
+            'images/research/che-guevara-portrait.jpg',
+            'images/research/steve-jobs-portrait.jpg',
+            'images/research/social-research-crowd.jpg',
+        ],
+        'links' => [
+            'href="F1_Anmolweb-D.html#top"' => 'href="{{ route(\'home\') }}"',
+            'href="F1_Anmolweb-D.html"' => 'href="{{ route(\'home\') }}"',
+            'href="F2_Anmolweb-Industries.html"' => 'href="{{ route(\'industries\') }}"',
+            'href="F3_Anmolweb-Philanthropy.html"' => 'href="{{ route(\'philanthropy\') }}"',
+            'href="F4_Anmolweb-InTheNews.html"' => 'href="{{ route(\'news\') }}"',
+            'href="AG-IN THE NEWS.html"' => 'href="{{ route(\'news\') }}"',
+            'href="F5_Anmolweb-Library.html"' => 'href="{{ route(\'books\') }}"',
+            'href="BookAG.html"' => 'href="{{ route(\'books\') }}"',
+        ],
+        'script_links' => [
+            'F5_Anmolweb-Library.html#top' => '/books#top',
+            'F3_Anmolweb-Philanthropy.html#top' => '/philanthropy#top',
+        ],
+        'navigation' => <<<'HTML'
+  <nav id="nav">
+    <a href="{{ route('industries') }}">Industries</a>
+    <a href="{{ route('philanthropy') }}">Philanthropy</a>
+    <a href="{{ route('news') }}">In the News</a>
+    <a href="{{ route('books') }}">Books</a>
+    <a href="#top" class="active">Research &amp; Publications</a>
+    <a href="{{ route('home') }}#meet">About Anmol Goel</a>
+  </nav>
+HTML,
+        'schema' => <<<'JSON'
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Research & Publications — Anmol Pushjai Goel",
+  "url": "{{ route('research') }}",
+  "description": "Research, articles, essays and recommended studies by Anmol Pushjai Goel.",
+  "inLanguage": "en-IN",
+  "about": {
+    "@type": "Person",
+    "name": "Anmol Pushjai Goel",
+    "url": "{{ route('home') }}"
+  }
+}
+JSON,
+    ],
 ];
 
 foreach ([
@@ -190,6 +343,9 @@ foreach ([
     $projectRoot.'/public/js',
     $projectRoot.'/public/images/home',
     $projectRoot.'/public/images/philanthropy',
+    $projectRoot.'/public/images/news',
+    $projectRoot.'/public/images/books',
+    $projectRoot.'/public/images/research',
 ] as $directory) {
     if (! is_dir($directory) && ! mkdir($directory, 0755, true) && ! is_dir($directory)) {
         throw new RuntimeException("Unable to create directory: {$directory}");
@@ -232,16 +388,23 @@ foreach ($pages as $pageName => $page) {
         throw new RuntimeException("Image extraction failed for {$pageName}.");
     }
 
-    if (! preg_match('~<style>(.*?)</style>~s', $html, $styleMatch)) {
+    $styleMatch = extractTagBlock($html, 'style');
+    if ($styleMatch === null) {
         throw new RuntimeException("Inline CSS not found for {$pageName}.");
     }
 
-    if (! preg_match('~<script>(.*?)</script>~s', $html, $scriptMatch)) {
+    $scriptMatch = extractTagBlock($html, 'script');
+    if ($scriptMatch === null) {
         throw new RuntimeException("Inline JavaScript not found for {$pageName}.");
     }
 
     $css = trim($styleMatch[1]).PHP_EOL;
     $javascript = trim($scriptMatch[1]).PHP_EOL;
+    $javascript = preg_replace(
+        "~\\{\\{ asset\\('([^']+)'\\) \\}\\}~",
+        '/$1',
+        $javascript,
+    ) ?? $javascript;
     $html = str_replace($styleMatch[0], '', $html);
     $html = str_replace($scriptMatch[0], '', $html);
 
@@ -252,6 +415,10 @@ foreach ($pages as $pageName => $page) {
 
     foreach ($page['links'] as $from => $to) {
         $html = str_replace($from, $to, $html);
+    }
+
+    foreach ($page['script_links'] ?? [] as $from => $to) {
+        $javascript = str_replace($from, $to, $javascript);
     }
 
     $html = preg_replace(
@@ -299,8 +466,20 @@ foreach ($pages as $pageName => $page) {
     $seo .= '<script type="application/ld+json">'.PHP_EOL.$bladeSafeSchema.PHP_EOL.'</script>'.PHP_EOL;
 
     $html = str_replace('</head>', $seo.'</head>', $html);
-    $html = preg_replace('~(<section\b[^>]*class="[^"]*\bhero\b)~', "<main id=\"main-content\">\n$1", $html, 1);
-    $html = str_replace('<footer id="contact">', "</main>\n\n<footer id=\"contact\">", $html);
+    $mainInserted = 0;
+    $html = preg_replace(
+        '~(<section\b[^>]*class="[^"]*\b(?:hero|index)\b)~',
+        "<main id=\"main-content\">\n$1",
+        $html,
+        1,
+        $mainInserted,
+    );
+
+    if ($mainInserted === 0) {
+        $html = preg_replace('~(<section\b)~', "<main id=\"main-content\">\n$1", $html, 1);
+    }
+
+    $html = preg_replace('~(<footer\b)~', "</main>\n\n$1", $html, 1);
     $html = str_replace('</body>', '<script src="{{ asset(\'js/'.$pageName.'.js\') }}"></script>'.PHP_EOL.'</body>', $html);
 
     if (! ($page['preserve_output'] ?? false)) {
@@ -311,3 +490,25 @@ foreach ($pages as $pageName => $page) {
 }
 
 echo 'Imported '.count($pages)." static pages into Laravel.\n";
+
+function extractTagBlock(string $html, string $tag): ?array
+{
+    if (! preg_match("~<{$tag}\\b[^>]*>~i", $html, $openMatch, PREG_OFFSET_CAPTURE)) {
+        return null;
+    }
+
+    $openTag = $openMatch[0][0];
+    $contentStart = $openMatch[0][1] + strlen($openTag);
+    $closeStart = stripos($html, "</{$tag}>", $contentStart);
+
+    if ($closeStart === false) {
+        return null;
+    }
+
+    $closeEnd = $closeStart + strlen("</{$tag}>");
+
+    return [
+        substr($html, $openMatch[0][1], $closeEnd - $openMatch[0][1]),
+        substr($html, $contentStart, $closeStart - $contentStart),
+    ];
+}

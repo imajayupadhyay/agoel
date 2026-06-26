@@ -11,3 +11,6 @@ Route::permanentRedirect('/F1 Anmolweb-D.html', '/');
 Route::permanentRedirect('/F2_Anmolweb-Industries.html', '/industries');
 Route::permanentRedirect('/F3_Anmolweb-Industries (1).html', '/industries');
 Route::permanentRedirect('/F3_Anmolweb-Philanthropy.html', '/philanthropy');
+Route::permanentRedirect('/AG-IN THE NEWS.html', '/in-the-news');
+Route::permanentRedirect('/BookAG.html', '/books');
+Route::permanentRedirect('/AG-Research & Publications.html', '/research-publications');

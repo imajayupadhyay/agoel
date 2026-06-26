@@ -38,9 +38,9 @@
   <nav id="nav">
     <a href="{{ route('industries') }}">Industries</a>
     <a href="{{ route('philanthropy') }}">Philanthropy</a>
-    <a href="{{ route('home') }}#news">In the News</a>
-    <a href="{{ route('home') }}#books">Books</a>
-    <a href="{{ route('home') }}#research">Research &amp; Publications</a>
+    <a href="{{ route('news') }}">In the News</a>
+    <a href="{{ route('books') }}">Books</a>
+    <a href="{{ route('research') }}">Research &amp; Publications</a>
     <a href="{{ route('home') }}#meet">About Anmol Goel</a>
   </nav>
   <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
