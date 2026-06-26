@@ -23,16 +23,21 @@
     <div class="news">
       <label>{{ $content['newsletter_label'] ?? '' }}</label>
       <p class="lead" style="color:var(--muted-d);margin-bottom:20px;font-size:15px">{{ $content['newsletter_description'] ?? '' }}</p>
-      <div
+      <form
         class="field"
         data-newsletter
+        method="POST"
+        action="{{ route('newsletter.subscribe') }}"
         data-success="{{ $content['newsletter_success'] ?? '' }}"
         data-invalid="{{ $content['newsletter_invalid'] ?? '' }}"
       >
-        <input id="nl" type="email" placeholder="{{ $content['newsletter_placeholder'] ?? '' }}" aria-label="Email">
-        <button id="nlBtn" type="button">{{ $content['newsletter_button'] ?? '' }}</button>
-      </div>
-      <div class="ok" id="nlOk"></div>
+        @csrf
+        <input name="source" type="hidden" value="homepage">
+        <input name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+        <input id="nl" name="email" type="email" placeholder="{{ $content['newsletter_placeholder'] ?? '' }}" aria-label="Email" required>
+        <button id="nlBtn" type="submit">{{ $content['newsletter_button'] ?? '' }}</button>
+      </form>
+      <div class="ok" id="nlOk">{{ session('newsletter_status') }}</div>
     </div>
   </div>
   <div class="foot-base">

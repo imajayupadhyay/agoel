@@ -71,6 +71,16 @@
         </a>
 
         <a
+            class="sidebar-link {{ request()->routeIs('admin.newsletters.*') ? 'is-active' : '' }}"
+            href="{{ route('admin.newsletters.index') }}"
+        >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M4 5h16v14H4V5Zm2 3.2V17h12V8.2l-6 4.3-6-4.3Zm1.7-1.2 4.3 3.1L16.3 7H7.7Z"/>
+            </svg>
+            <span>Newsletters</span>
+        </a>
+
+        <a
             class="sidebar-link {{ request()->routeIs('admin.books.*') ? 'is-active' : '' }}"
             href="{{ route('admin.books.edit') }}"
         >

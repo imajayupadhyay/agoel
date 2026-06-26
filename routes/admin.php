@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\HeaderController;
 use App\Http\Controllers\Admin\HomepageController;
 use App\Http\Controllers\Admin\IndustriesController;
 use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\NewsletterController;
 use App\Http\Controllers\Admin\PhilanthropyController;
 use App\Http\Controllers\Admin\ResearchController;
 use App\Http\Controllers\Admin\SeoSettingsController;
@@ -35,6 +36,9 @@ Route::prefix('sanchalak')->group(function () {
         Route::put('/philanthropy', [PhilanthropyController::class, 'update'])->name('admin.philanthropy.update');
         Route::get('/in-the-news', [NewsController::class, 'edit'])->name('admin.news.edit');
         Route::put('/in-the-news', [NewsController::class, 'update'])->name('admin.news.update');
+        Route::get('/newsletters', [NewsletterController::class, 'index'])->name('admin.newsletters.index');
+        Route::patch('/newsletters/{subscriber}', [NewsletterController::class, 'updateStatus'])->name('admin.newsletters.update');
+        Route::delete('/newsletters/{subscriber}', [NewsletterController::class, 'destroy'])->name('admin.newsletters.destroy');
         Route::get('/books', [BooksController::class, 'edit'])->name('admin.books.edit');
         Route::put('/books', [BooksController::class, 'update'])->name('admin.books.update');
         Route::get('/research-publications', [ResearchController::class, 'edit'])->name('admin.research.edit');

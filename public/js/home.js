@@ -21,13 +21,25 @@
   const year=document.getElementById('yr');
   if(year)year.textContent=new Date().getFullYear();
 
-  // newsletter (front-end only)
+  // newsletter
   const nlBtn=document.getElementById('nlBtn'),nl=document.getElementById('nl'),nlOk=document.getElementById('nlOk');
   const newsletter=document.querySelector('[data-newsletter]');
-  nlBtn?.addEventListener('click',()=>{
-    const v=nl.value.trim();
-    if(/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){nlOk.textContent=newsletter?.dataset.success||'Thank you — you are on the list.';nl.value='';}
-    else{nlOk.textContent=newsletter?.dataset.invalid||'Please enter a valid email address.';}
+  newsletter?.addEventListener('submit',async(event)=>{
+    event.preventDefault();
+    const v=nl?.value.trim()||'';
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){nlOk.textContent=newsletter?.dataset.invalid||'Please enter a valid email address.';return;}
+    nlBtn.disabled=true;
+    nlOk.textContent='';
+    try{
+      const response=await fetch(newsletter.action,{method:'POST',body:new FormData(newsletter),headers:{'Accept':'application/json','X-Requested-With':'XMLHttpRequest'}});
+      const data=await response.json().catch(()=>({}));
+      if(response.ok){nlOk.textContent=newsletter?.dataset.success||data.message||'Thank you — you are on the list.';newsletter.reset();}
+      else{nlOk.textContent=data.message||newsletter?.dataset.invalid||'Please enter a valid email address.';}
+    }catch(error){
+      nlOk.textContent='Something went wrong. Please try again.';
+    }finally{
+      nlBtn.disabled=false;
+    }
   });
 
   // gentle parallax on Meet Anmol layers

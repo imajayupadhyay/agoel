@@ -1,0 +1,231 @@
+.newsletter-admin {
+    display: grid;
+    gap: 24px;
+}
+
+.newsletter-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+.newsletter-head p {
+    color: #a98f5b;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .24em;
+    margin: 0 0 10px;
+    text-transform: uppercase;
+}
+
+.newsletter-head h2 {
+    color: #f6f1e8;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 300;
+    letter-spacing: 0;
+    margin: 0 0 8px;
+}
+
+.newsletter-head span,
+.newsletter-empty span,
+.newsletter-table td span,
+.newsletter-table td small {
+    color: #9a9a9e;
+}
+
+.newsletter-alert {
+    background: rgba(169, 143, 91, .14);
+    border: 1px solid rgba(169, 143, 91, .36);
+    color: #f6f1e8;
+    padding: 14px 16px;
+}
+
+.newsletter-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.newsletter-metrics div,
+.newsletter-panel,
+.newsletter-filters {
+    background: rgba(255, 255, 255, .045);
+    border: 1px solid rgba(255, 255, 255, .1);
+}
+
+.newsletter-metrics div {
+    padding: 18px;
+}
+
+.newsletter-metrics span {
+    color: #9a9a9e;
+    display: block;
+    font-size: 11px;
+    letter-spacing: .16em;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.newsletter-metrics strong {
+    color: #f6f1e8;
+    font-size: 30px;
+    font-weight: 300;
+}
+
+.newsletter-filters {
+    align-items: end;
+    display: grid;
+    gap: 14px;
+    grid-template-columns: minmax(220px, 1fr) 180px auto auto;
+    padding: 18px;
+}
+
+.newsletter-filters label {
+    color: #c7b589;
+    display: block;
+    font-size: 11px;
+    letter-spacing: .16em;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.newsletter-filters input,
+.newsletter-filters select {
+    background: rgba(11, 11, 12, .8);
+    border: 1px solid rgba(255, 255, 255, .12);
+    color: #f6f1e8;
+    min-height: 42px;
+    padding: 10px 12px;
+    width: 100%;
+}
+
+.newsletter-filters button,
+.newsletter-filters a,
+.newsletter-actions button {
+    align-items: center;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, .16);
+    color: #f6f1e8;
+    cursor: pointer;
+    display: inline-flex;
+    font: inherit;
+    font-size: 11px;
+    justify-content: center;
+    letter-spacing: .14em;
+    min-height: 42px;
+    padding: 10px 14px;
+    text-transform: uppercase;
+}
+
+.newsletter-filters button,
+.newsletter-actions button {
+    background: #a98f5b;
+    border-color: #a98f5b;
+    color: #0b0b0c;
+}
+
+.newsletter-actions button.danger {
+    background: transparent;
+    border-color: rgba(255, 180, 171, .45);
+    color: #ffb4ab;
+}
+
+.newsletter-panel {
+    overflow: hidden;
+}
+
+.newsletter-empty {
+    display: grid;
+    gap: 6px;
+    padding: 28px;
+}
+
+.newsletter-empty strong {
+    color: #f6f1e8;
+}
+
+.newsletter-table-wrap {
+    overflow-x: auto;
+}
+
+.newsletter-table {
+    border-collapse: collapse;
+    min-width: 1040px;
+    width: 100%;
+}
+
+.newsletter-table th,
+.newsletter-table td {
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+    padding: 16px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.newsletter-table th {
+    color: #c7b589;
+    font-size: 11px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+}
+
+.newsletter-table td {
+    color: #f6f1e8;
+    font-size: 14px;
+}
+
+.newsletter-table td strong,
+.newsletter-table td span,
+.newsletter-table td small {
+    display: block;
+}
+
+.status-badge {
+    border: 1px solid rgba(255, 255, 255, .14);
+    display: inline-flex;
+    font-size: 11px;
+    letter-spacing: .12em;
+    padding: 6px 9px;
+    text-transform: uppercase;
+}
+
+.status-active {
+    border-color: rgba(135, 214, 160, .42);
+    color: #87d6a0;
+}
+
+.status-unsubscribed {
+    border-color: rgba(255, 180, 171, .42);
+    color: #ffb4ab;
+}
+
+.newsletter-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.newsletter-pagination {
+    border-top: 1px solid rgba(255, 255, 255, .08);
+    padding: 16px;
+}
+
+.newsletter-pagination nav {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.newsletter-pagination p,
+.newsletter-pagination span,
+.newsletter-pagination a {
+    color: #9a9a9e;
+}
+
+@media (max-width: 860px) {
+    .newsletter-metrics,
+    .newsletter-filters {
+        grid-template-columns: 1fr;
+    }
+}
