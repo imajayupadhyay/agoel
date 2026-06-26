@@ -34,7 +34,7 @@ class NewsletterController extends Controller
 
     public function updateStatus(NewsletterSubscriber $subscriber, Request $request): RedirectResponse
     {
-        abort_unless($request->user()?->email === 'admin@gmail.com', 403);
+        abort_unless($request->user()?->isAdmin(), 403);
 
         $data = $request->validate([
             'status' => ['required', 'in:active,unsubscribed'],
@@ -51,7 +51,7 @@ class NewsletterController extends Controller
 
     public function destroy(NewsletterSubscriber $subscriber, Request $request): RedirectResponse
     {
-        abort_unless($request->user()?->email === 'admin@gmail.com', 403);
+        abort_unless($request->user()?->isAdmin(), 403);
 
         $subscriber->delete();
 

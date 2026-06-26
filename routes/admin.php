@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\NewsletterController;
 use App\Http\Controllers\Admin\PhilanthropyController;
 use App\Http\Controllers\Admin\ResearchController;
 use App\Http\Controllers\Admin\SeoSettingsController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('sanchalak')->group(function () {
@@ -39,6 +40,11 @@ Route::prefix('sanchalak')->group(function () {
         Route::get('/newsletters', [NewsletterController::class, 'index'])->name('admin.newsletters.index');
         Route::patch('/newsletters/{subscriber}', [NewsletterController::class, 'updateStatus'])->name('admin.newsletters.update');
         Route::delete('/newsletters/{subscriber}', [NewsletterController::class, 'destroy'])->name('admin.newsletters.destroy');
+        Route::get('/users', [UserController::class, 'index'])->name('admin.users.index');
+        Route::post('/users', [UserController::class, 'store'])->name('admin.users.store');
+        Route::put('/users/{user}', [UserController::class, 'update'])->name('admin.users.update');
+        Route::put('/users/{user}/password', [UserController::class, 'updatePassword'])->name('admin.users.password.update');
+        Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('admin.users.destroy');
         Route::get('/books', [BooksController::class, 'edit'])->name('admin.books.edit');
         Route::put('/books', [BooksController::class, 'update'])->name('admin.books.update');
         Route::get('/research-publications', [ResearchController::class, 'edit'])->name('admin.research.edit');

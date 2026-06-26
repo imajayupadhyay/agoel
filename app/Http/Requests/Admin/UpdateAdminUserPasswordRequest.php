@@ -4,17 +4,20 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreHomepageSectionRequest extends FormRequest
+class UpdateAdminUserPasswordRequest extends FormRequest
 {
     public function authorize(): bool
     {
         return $this->user()?->isAdmin();
     }
 
+    /**
+     * @return array<string, array<int, string>>
+     */
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:120'],
+            'password' => ['required', 'string', 'min:12', 'confirmed'],
         ];
     }
 }

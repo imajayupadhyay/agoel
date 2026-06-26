@@ -9,7 +9,7 @@ class UpdateHeaderRequest extends FormRequest
 {
     public function authorize(): bool
     {
-        return $this->user()?->email === 'admin@gmail.com';
+        return $this->user()?->isAdmin();
     }
 
     public function rules(): array

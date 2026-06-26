@@ -81,6 +81,16 @@
         </a>
 
         <a
+            class="sidebar-link {{ request()->routeIs('admin.users.*') ? 'is-active' : '' }}"
+            href="{{ route('admin.users.index') }}"
+        >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0-6a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm8.5 7a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm0-5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM2 21v-1c0-4.1 2.7-7 6-7s6 2.9 6 7v1H2Zm2.2-2h7.6c-.4-2.4-1.9-4-3.8-4s-3.4 1.6-3.8 4ZM14 21v-2h5.8c-.3-1.6-1.3-2.7-2.8-3.2l.6-1.9c2.6.8 4.4 3.1 4.4 6.1v1h-8Z"/>
+            </svg>
+            <span>Users</span>
+        </a>
+
+        <a
             class="sidebar-link {{ request()->routeIs('admin.books.*') ? 'is-active' : '' }}"
             href="{{ route('admin.books.edit') }}"
         >

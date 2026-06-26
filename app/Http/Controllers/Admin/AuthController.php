@@ -12,7 +12,7 @@ class AuthController extends Controller
 {
     public function create(Request $request): View|RedirectResponse
     {
-        if ($request->user()?->email === 'admin@gmail.com') {
+        if ($request->user()?->isAdmin()) {
             return redirect()->route('admin.dashboard');
         }
 
@@ -26,10 +26,15 @@ class AuthController extends Controller
             'password' => ['required', 'string'],
         ]);
 
-        if (
-            mb_strtolower($credentials['email']) !== 'admin@gmail.com'
-            || ! Auth::attempt($credentials)
-        ) {
+        if (! Auth::attempt($credentials)) {
+            return back()
+                ->withErrors(['email' => 'The provided admin credentials are incorrect.'])
+                ->onlyInput('email');
+        }
+
+        if (! $request->user()?->isAdmin()) {
+            Auth::logout();
+
             return back()
                 ->withErrors(['email' => 'The provided admin credentials are incorrect.'])
                 ->onlyInput('email');
