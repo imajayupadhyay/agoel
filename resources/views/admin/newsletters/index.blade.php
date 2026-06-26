@@ -4,7 +4,7 @@
 @section('page-title', 'Newsletters')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/admin-newsletters.css') }}">
+    <link rel="stylesheet" href="{{ asset_version('css/admin-newsletters.css') }}">
 @endpush
 
 @section('content')

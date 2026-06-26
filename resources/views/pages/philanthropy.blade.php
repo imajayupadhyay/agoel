@@ -28,7 +28,7 @@
 @if ($page->og_image)
 <meta name="twitter:image" content="{{ $media->url($page->og_image) }}">
 @endif
-<link rel="stylesheet" href="{{ asset('css/philanthropy.css') }}">
+<link rel="stylesheet" href="{{ asset_version('css/philanthropy.css') }}">
 <script type="application/ld+json">{!! json_encode($schemaMarkup, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
 </head>
 <body>
@@ -53,6 +53,6 @@
   ])
 @endif
 
-<script src="{{ asset('js/philanthropy.js') }}"></script>
+<script src="{{ asset_version('js/philanthropy.js') }}"></script>
 </body>
 </html>

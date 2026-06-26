@@ -4,7 +4,7 @@
 @section('page-title', 'Header')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/admin-homepage.css') }}">
+    <link rel="stylesheet" href="{{ asset_version('css/admin-homepage.css') }}">
 @endpush
 
 @section('content')
@@ -139,5 +139,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('js/admin-header.js') }}"></script>
+    <script src="{{ asset_version('js/admin-header.js') }}"></script>
 @endpush

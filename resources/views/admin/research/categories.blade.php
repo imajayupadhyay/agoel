@@ -4,8 +4,8 @@
 @section('page-title', 'Research Categories')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/admin-homepage.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/admin-industries.css') }}">
+    <link rel="stylesheet" href="{{ asset_version('css/admin-homepage.css') }}">
+    <link rel="stylesheet" href="{{ asset_version('css/admin-industries.css') }}">
 @endpush
 
 @section('content')
@@ -157,5 +157,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('js/admin-homepage.js') }}"></script>
+    <script src="{{ asset_version('js/admin-homepage.js') }}"></script>
 @endpush

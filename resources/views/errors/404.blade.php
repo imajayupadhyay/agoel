@@ -20,7 +20,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{{ asset('css/error.css') }}">
+<link rel="stylesheet" href="{{ asset_version('css/error.css') }}">
 </head>
 <body>
 @include('partials.site-header')
@@ -52,6 +52,6 @@
   <a href="{{ route('about') }}">About Anmol Goel</a>
   <a class="foot-sitemap" href="{{ route('sitemap') }}">sitemap.xml</a>
 </footer>
-<script src="{{ asset('js/error.js') }}"></script>
+<script src="{{ asset_version('js/error.js') }}"></script>
 </body>
 </html>

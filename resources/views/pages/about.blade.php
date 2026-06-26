@@ -50,7 +50,7 @@
 @if ($socialImage)
 <meta name="twitter:image" content="{{ $socialImage }}">
 @endif
-<link rel="stylesheet" href="{{ asset('css/about.css') }}">
+<link rel="stylesheet" href="{{ asset_version('css/about.css') }}">
 <script type="application/ld+json">{!! json_encode($schemaMarkup, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
 </head>
 <body>
@@ -173,6 +173,6 @@
 @endif
 
 <script id="about-praise-data" type="application/json">{!! json_encode($recognitions, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT) !!}</script>
-<script src="{{ asset('js/about.js') }}"></script>
+<script src="{{ asset_version('js/about.js') }}"></script>
 </body>
 </html>

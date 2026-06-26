@@ -29,7 +29,7 @@
 <meta name="twitter:title" content="{{ $page->seo_title }}">
 <meta name="twitter:description" content="{{ $page->meta_description }}">
 @if ($socialImage)<meta name="twitter:image" content="{{ $socialImage }}">@endif
-<link rel="stylesheet" href="{{ asset('css/home.css') }}">
+<link rel="stylesheet" href="{{ asset_version('css/home.css') }}">
 <script type="application/ld+json">{!! json_encode($schemaMarkup, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
 </head>
 <body>
@@ -55,6 +55,6 @@
   ])
 @endif
 
-<script src="{{ asset('js/home.js') }}"></script>
+<script src="{{ asset_version('js/home.js') }}"></script>
 </body>
 </html>

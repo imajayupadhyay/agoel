@@ -39,7 +39,7 @@
 @if ($page->og_image)
 <meta name="twitter:image" content="{{ $media->url($page->og_image) }}">
 @endif
-<link rel="stylesheet" href="{{ asset('css/news.css') }}">
+<link rel="stylesheet" href="{{ asset_version('css/news.css') }}">
 <script type="application/ld+json">{!! json_encode($schemaMarkup, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
 </head>
 <body>
@@ -152,6 +152,6 @@
 </footer>
 @endif
 
-<script src="{{ asset('js/news.js') }}"></script>
+<script src="{{ asset_version('js/news.js') }}"></script>
 </body>
 </html>

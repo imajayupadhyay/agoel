@@ -4,7 +4,7 @@
 @section('page-title', 'SEO Settings')
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('css/admin-homepage.css') }}">
+    <link rel="stylesheet" href="{{ asset_version('css/admin-homepage.css') }}">
 @endpush
 
 @section('content')

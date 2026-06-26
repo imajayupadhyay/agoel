@@ -6,7 +6,7 @@
     @include('partials.favicon')
     <meta name="robots" content="noindex, nofollow">
     <title>@yield('title', 'Dashboard') — Sanchalak</title>
-    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <link rel="stylesheet" href="{{ asset_version('css/admin.css') }}">
     @stack('styles')
 </head>
 <body>
@@ -24,7 +24,7 @@
 
     <div class="sidebar-backdrop" data-sidebar-close></div>
 
-    <script src="{{ asset('js/admin.js') }}"></script>
+    <script src="{{ asset_version('js/admin.js') }}"></script>
     @stack('scripts')
 </body>
 </html>

@@ -55,7 +55,7 @@
 @if ($page->og_image)
 <meta name="twitter:image" content="{{ $media->url($page->og_image) }}">
 @endif
-<link rel="stylesheet" href="{{ asset('css/books.css') }}">
+<link rel="stylesheet" href="{{ asset_version('css/books.css') }}">
 <script type="application/ld+json">{!! json_encode($schemaMarkup, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
 </head>
 <body>
@@ -222,6 +222,6 @@
 <script>
 window.BOOKS_PAGE_DATA = @json($clientData);
 </script>
-<script src="{{ asset('js/books.js') }}"></script>
+<script src="{{ asset_version('js/books.js') }}"></script>
 </body>
 </html>
