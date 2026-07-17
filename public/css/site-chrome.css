@@ -148,20 +148,23 @@ body.menu-open #hdr .burger span:nth-child(3){transform:translateY(-5px) rotate(
 @media (max-width:1024px){
   #hdr #nav{
     position:fixed;
-    left:0;
-    right:0;
-    top:70px;
-    z-index:99;
+    inset:70px 0 auto 0;
+    z-index:70;
     display:grid;
+    grid-template-columns:1fr;
+    align-items:stretch;
+    justify-content:stretch;
     gap:0;
     width:auto;
     height:auto;
+    max-height:calc(100vh - 70px);
+    overflow-y:auto;
     background:var(--site-paper);
     border-bottom:1px solid var(--site-line);
     transform:translateY(-12px);
     opacity:0;
     pointer-events:none;
-    transition:transform .32s ease,opacity .32s ease;
+    transition:.32s ease;
   }
 
   body.menu-open #hdr #nav{
@@ -178,16 +181,30 @@ body.menu-open #hdr .burger span:nth-child(3){transform:translateY(-5px) rotate(
     font-family:"Poppins","Montserrat","proxima-nova","Proxima Nova",Arial,sans-serif;
     font-size:18px;
     font-weight:400;
+    line-height:1.35;
     letter-spacing:0;
     text-transform:none;
+    text-align:left;
+    white-space:normal;
+    overflow-wrap:anywhere;
+    transition:color .25s ease,background .25s ease;
   }
 
   #hdr #nav a:first-child{border-top:0}
+  #hdr #nav a:hover,
+  #hdr #nav a.active{color:var(--site-brass)}
+
   #hdr #nav a::after{display:none}
   #hdr .burger{display:block}
 }
 
 @media (max-width:520px){
-  #hdr{gap:16px}
-  #hdr .brand{font-size:14px;min-width:0}
+  #hdr{
+    gap:16px;
+  }
+
+  #hdr .brand{
+    min-width:0;
+    font-size:14px;
+  }
 }
