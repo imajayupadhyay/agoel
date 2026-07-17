@@ -51,6 +51,7 @@
 <meta name="twitter:image" content="{{ $socialImage }}">
 @endif
 <link rel="stylesheet" href="{{ asset_version('css/about.css') }}">
+<link rel="stylesheet" href="{{ asset_version('css/site-chrome.css') }}">
 <script type="application/ld+json">{!! json_encode($schemaMarkup, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
 </head>
 <body>

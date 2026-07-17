@@ -1,7 +1,13 @@
 @php
-    $heroContent = $sections->firstWhere('type', 'hero')?->content ?? config('homepage.sections.hero.content');
+    $heroContent = array_replace_recursive(
+        config('homepage.sections.hero.content', []),
+        $sections->firstWhere('type', 'hero')?->content ?? [],
+    );
     $contactSection = $sections->firstWhere('type', 'contact');
-    $contactContent = $contactSection?->content ?? config('homepage.sections.contact.content');
+    $contactContent = array_replace_recursive(
+        config('homepage.sections.contact.content', []),
+        $contactSection?->content ?? [],
+    );
     $socialImage = $media->url($page->og_image ?: ($heroContent['image'] ?? null));
 @endphp
 <!DOCTYPE html>
@@ -14,7 +20,7 @@
 <meta name="description" content="{{ $page->meta_description }}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 <meta name="robots" content="{{ $robotsMeta }}">
 <meta name="author" content="Anmol Pushjai Goel">
 <link rel="canonical" href="{{ $canonicalUrl }}">
@@ -30,9 +36,10 @@
 <meta name="twitter:description" content="{{ $page->meta_description }}">
 @if ($socialImage)<meta name="twitter:image" content="{{ $socialImage }}">@endif
 <link rel="stylesheet" href="{{ asset_version('css/home.css') }}">
+<link rel="stylesheet" href="{{ asset_version('css/site-chrome.css') }}">
 <script type="application/ld+json">{!! json_encode($schemaMarkup, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
 </head>
-<body>
+<body id="top">
 
 @include('partials.site-header')
 
@@ -41,7 +48,8 @@
     @continue($section->type === 'contact')
     @includeIf('pages.home.sections.'.$section->type, [
         'section' => $section,
-        'content' => $section->content ?? [],
+        'content' => array_replace_recursive(config("homepage.sections.{$section->key}.content", []), $section->content ?? []),
+        'newsCoverage' => $newsCoverage ?? collect(),
         'media' => $media,
     ])
   @endforeach
@@ -50,7 +58,7 @@
 @if ($contactSection)
   @include('pages.home.sections.contact', [
       'section' => $contactSection,
-      'content' => $contactContent,
+      'content' => array_replace_recursive(config("homepage.sections.{$contactSection->key}.content", []), $contactContent),
       'media' => $media,
   ])
 @endif

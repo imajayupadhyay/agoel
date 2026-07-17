@@ -13,8 +13,8 @@ class SiteTest extends TestCase
     public static function pageProvider(): array
     {
         return [
-            'home' => ['/', 'Anmol Pushjai Goel — Entrepreneur', 'home.css'],
-            'industries' => ['/industries', 'Industries — Anmol Pushjai Goel', 'industries.css'],
+            'home' => ['/', 'Anmol Pushjai Goel · Entrepreneur, Tech and AI Policy Expert, Author', 'home.css'],
+            'industries' => ['/industries', 'Industries · Anmol Pushjai Goel · Nuclear Edge', 'industries.css'],
             'philanthropy' => ['/philanthropy', 'Philanthropy &amp; Governance', 'philanthropy.css'],
             'news' => ['/in-the-news', 'In the News — Anmol Pushjai Goel', 'news.css'],
             'books' => ['/books', 'The Library — Anmol Pushjai Goel', 'books.css'],

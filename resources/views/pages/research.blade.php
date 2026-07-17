@@ -80,6 +80,7 @@
 <meta name="twitter:image" content="{{ $media->url($page->og_image) }}">
 @endif
 <link rel="stylesheet" href="{{ asset_version('css/research.css') }}">
+<link rel="stylesheet" href="{{ asset_version('css/site-chrome.css') }}">
 <script type="application/ld+json">{!! json_encode($schemaMarkup, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
 </head>
 <body>

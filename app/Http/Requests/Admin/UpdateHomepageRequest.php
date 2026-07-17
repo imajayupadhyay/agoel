@@ -53,6 +53,12 @@ class UpdateHomepageRequest extends FormRequest
         $schemaService = app(HomepageSchema::class);
 
         foreach ($page->sections as $section) {
+            $sectionSchema = $schemaService->forSection($section);
+
+            if ($sectionSchema['admin_hidden'] ?? false) {
+                continue;
+            }
+
             $prefix = "sections.{$section->id}";
             $rules["{$prefix}.name"] = [
                 Rule::requiredIf($section->is_custom),
@@ -64,7 +70,7 @@ class UpdateHomepageRequest extends FormRequest
             $rules["{$prefix}.sort_order"] = ['required', 'integer', 'min:0', 'max:10000'];
             $rules["{$prefix}.content"] = ['required', 'array'];
 
-            foreach ($schemaService->forSection($section)['fields'] as $fieldName => $field) {
+            foreach ($sectionSchema['fields'] as $fieldName => $field) {
                 $this->addFieldRules($rules, "{$prefix}.content.{$fieldName}", $field);
 
                 if ($field['type'] === 'image') {
@@ -92,7 +98,23 @@ class UpdateHomepageRequest extends FormRequest
                     return;
                 }
 
-                $reserved = ['top', 'industries', 'philanthropy', 'news', 'books', 'research', 'voice', 'meet', 'contact'];
+                $reserved = [
+                    'top',
+                    'industries',
+                    'company',
+                    'philanthropy',
+                    'governance',
+                    'books',
+                    'research',
+                    'essays',
+                    'voice',
+                    'about',
+                    'press',
+                    'connect',
+                    'news',
+                    'meet',
+                    'contact',
+                ];
                 $anchors = [];
 
                 foreach ($page->sections->where('is_custom', true) as $section) {

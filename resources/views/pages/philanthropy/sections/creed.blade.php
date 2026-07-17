@@ -1,18 +1,14 @@
-@php
-  $background = $media->url($content['background_image'] ?? null);
-@endphp
-<section class="section creed scene">
-  <div class="scene-bg" @if($background) style="background-image:url('{{ $background }}')" @endif role="img" aria-label="{{ $content['background_alt'] ?? '' }}"></div>
-  <div class="scene-veil"></div>
+<section class="sec idea">
   <div class="wrap">
-    <div class="creed-statement reveal">
+    <p class="eyebrow rev">{{ $content['eyebrow'] ?? 'The idea' }}</p>
+    <p class="lead rev d1">
       {{ $content['statement_before'] ?? '' }}
-      <em>{{ $content['statement_accent'] ?? '' }}</em>
+      @if (! empty($content['statement_accent']))<i>{{ $content['statement_accent'] }}</i>@endif
       {{ $content['statement_after'] ?? '' }}
-    </div>
-    <div class="creed-meta reveal" data-d="1">
+    </p>
+    <div class="idea-grid rev d2">
       @foreach ($content['principles'] ?? [] as $principle)
-        <div class="item"><b>{{ $principle['title'] ?? '' }}</b>{{ $principle['description'] ?? '' }}</div>
+        <div class="icell"><em>{{ $principle['title'] ?? '' }}</em><p>{{ $principle['description'] ?? '' }}</p></div>
       @endforeach
     </div>
   </div>

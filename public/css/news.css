@@ -1,8 +1,8 @@
 :root{
-    --ink:#0B0B0C;--ink-2:#141416;--paper:#F5F4F1;--paper-2:#EDEBE5;
-    --text:#1A1A1D;--muted:#7A7A80;--muted-d:#9A9A9E;
-    --line:#E2E0DA;--line-d:rgba(255,255,255,.12);
-    --gold:#A98F5B;--gold-soft:#C7B589;
+    --ink:#101E45;--ink-2:#0B1636;--paper:#FBFAF6;--paper-2:#F4F0E7;
+    --text:#171A21;--muted:#4A4F59;--muted-d:#7A808B;
+    --line:#E7E1D4;--line-d:rgba(255,255,255,.12);
+    --gold:#A9863E;--gold-soft:#C6A25A;
     --display:'proxima-nova','Proxima Nova','Montserrat',-apple-system,Helvetica,Arial,sans-serif;
     --body:'Roboto',-apple-system,Helvetica,Arial,sans-serif;
     --maxw:1240px;--pad:clamp(22px,5vw,72px);--ease:cubic-bezier(.22,.61,.36,1);
@@ -20,7 +20,7 @@
 
   /* header */
   header{position:fixed;top:0;left:0;right:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:22px var(--pad);transition:background .5s var(--ease),padding .5s var(--ease),border-color .5s;border-bottom:1px solid transparent}
-  header.scrolled{background:rgba(11,11,12,.86);backdrop-filter:blur(14px);padding:14px var(--pad);border-bottom:1px solid var(--line-d)}
+  header.scrolled{background:rgba(16,30,69,.86);backdrop-filter:blur(14px);padding:14px var(--pad);border-bottom:1px solid var(--line-d)}
   .brand{font-family:var(--display);font-weight:300;font-size:15px;letter-spacing:.22em;text-transform:uppercase;color:#fff;display:flex;align-items:center;gap:12px}
   .brand .mono{width:30px;height:30px;border:1px solid var(--gold);display:grid;place-items:center;font-size:12px;color:var(--gold-soft)}
   nav{display:flex;align-items:center;gap:30px}
@@ -28,7 +28,7 @@
   nav a:hover,nav a.active{color:#fff}
   nav a.active{position:relative}nav a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;background:var(--gold)}
   .nav-cta{border:1px solid var(--line-d);padding:9px 18px;color:#fff;transition:border-color .3s,background .3s}
-  .nav-cta:hover{border-color:var(--gold);background:rgba(169,143,91,.12)}
+  .nav-cta:hover{border-color:var(--gold);background:rgba(169,134,62,.12)}
   .burger{display:none;background:none;border:0;cursor:pointer;width:30px;height:20px;position:relative}
   .burger span{position:absolute;left:0;height:1.5px;width:100%;background:#fff;transition:.35s var(--ease)}
   .burger span:nth-child(1){top:2px}.burger span:nth-child(2){top:9px}.burger span:nth-child(3){top:16px}
@@ -39,7 +39,7 @@
   /* hero */
   .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:120px 0 64px;overflow:hidden}
   .scene-bg{position:absolute;inset:-10%;z-index:0;background-size:cover;background-position:center;filter:blur(64px) saturate(.7) brightness(.36);transform:scale(1.12);pointer-events:none;opacity:.45}
-  .scene-veil{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(72% 58% at 50% 4%,rgba(169,143,91,.12),transparent 60%),linear-gradient(180deg,rgba(11,11,12,.84),rgba(11,11,12,.95))}
+  .scene-veil{position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(72% 58% at 50% 4%,rgba(169,134,62,.12),transparent 60%),linear-gradient(180deg,rgba(16,30,69,.84),rgba(16,30,69,.95))}
   .stage{position:relative;z-index:2}
 
   .head{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);text-align:center;margin-bottom:clamp(42px,5.5vw,66px)}
@@ -94,7 +94,7 @@
     padding:24px 8px;border-bottom:1px solid var(--line-d);position:relative;
     opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease),background .4s,padding-left .4s var(--ease)}
   .row.in{opacity:1;transform:none}
-  .row::before{content:"";position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,rgba(169,143,91,.1),transparent);transition:width .45s var(--ease);z-index:-1}
+  .row::before{content:"";position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,rgba(169,134,62,.1),transparent);transition:width .45s var(--ease);z-index:-1}
   .row:hover{padding-left:20px}
   .row:hover::before{width:100%}
   .r-date{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-d)}

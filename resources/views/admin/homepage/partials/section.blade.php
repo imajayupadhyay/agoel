@@ -1,6 +1,6 @@
 @php
     $sectionSchema = $schema->forSection($section);
-    $content = $section->content ?? [];
+    $content = array_replace_recursive($sectionSchema['content'] ?? [], $section->content ?? []);
     $oldSection = data_get(old('sections', []), (string) $section->id, []);
     $oldContent = $oldSection['content'] ?? [];
 @endphp

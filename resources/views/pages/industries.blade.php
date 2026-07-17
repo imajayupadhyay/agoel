@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-IN">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +8,7 @@
 <meta name="description" content="{{ $page->meta_description }}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 
 <meta name="robots" content="{{ $robotsMeta }}">
 <meta name="author" content="Anmol Pushjai Goel">
@@ -29,9 +29,10 @@
 <meta name="twitter:image" content="{{ $media->url($page->og_image) }}">
 @endif
 <link rel="stylesheet" href="{{ asset_version('css/industries.css') }}">
+<link rel="stylesheet" href="{{ asset_version('css/site-chrome.css') }}">
 <script type="application/ld+json">{!! json_encode($schemaMarkup, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}</script>
 </head>
-<body>
+<body id="top">
 
 @include('partials.site-header')
 
@@ -39,14 +40,17 @@
 @foreach ($sections as $section)
   @continue($section->key === 'contact')
   @includeIf('pages.industries.sections.'.$section->type, [
-      'content' => $section->content ?? [],
+      'content' => array_replace_recursive(config("industries.sections.{$section->key}.content", []), $section->content ?? []),
+      'media' => $media,
+      'industries' => $industries,
   ])
 @endforeach
 </main>
 
 @if ($sections->has('contact'))
   @include('pages.industries.sections.contact', [
-      'content' => $sections->get('contact')->content ?? [],
+      'content' => array_replace_recursive(config('industries.sections.contact.content', []), $sections->get('contact')->content ?? []),
+      'media' => $media,
   ])
 @endif
 

@@ -12,7 +12,7 @@
   <a href="{{ $brandHref }}" class="brand" @if($brandExternal) target="_blank" rel="noopener" @endif>
     <span class="mono">{{ $headerSettings->brand_mark }}</span>{{ $headerSettings->brand_name }}
   </a>
-  <nav id="nav">
+  <nav id="nav" aria-label="Primary navigation">
     @foreach ($headerItems as $item)
       @php
         $href = $siteHeader->href($item->url);
@@ -26,6 +26,6 @@
       >{{ $item->label }}</a>
     @endforeach
   </nav>
-  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
 </header>
 @endif

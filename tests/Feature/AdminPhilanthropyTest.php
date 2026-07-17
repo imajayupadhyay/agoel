@@ -31,11 +31,11 @@ class AdminPhilanthropyTest extends TestCase
     {
         $this->get('/philanthropy')
             ->assertOk()
-            ->assertSee('The one lever that changes the position itself.')
-            ->assertSee('Thinking over certificates')
+            ->assertSee('Education opens the')
+            ->assertSee('Need before')
             ->assertSee('Smile Foundation')
             ->assertSee('Bharat Governance Council')
-            ->assertSee('Shri Mata Mansa Devi Shrine Trust');
+            ->assertSee('Service is a');
     }
 
     public function test_admin_can_update_sections_repeaters_visibility_and_order(): void
@@ -71,7 +71,7 @@ class AdminPhilanthropyTest extends TestCase
             ->assertSee('Built with purpose,')
             ->assertSee('Smile Foundation India')
             ->assertSee('Managed through the Philanthropy CMS.')
-            ->assertDontSee('A surname, a town, an income bracket');
+            ->assertDontSee('Giving is not a performance');
     }
 
     public function test_admin_can_replace_a_section_and_repeater_image(): void
@@ -124,7 +124,7 @@ class AdminPhilanthropyTest extends TestCase
         $this->get('/philanthropy')
             ->assertOk()
             ->assertSee('Long-term accountability')
-            ->assertDontSee('Thinking over certificates');
+            ->assertDontSee('Need before');
     }
 
     public function test_unpublished_philanthropy_page_is_not_public(): void

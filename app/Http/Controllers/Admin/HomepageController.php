@@ -20,10 +20,13 @@ class HomepageController extends Controller
     public function edit(HomepageSchema $schema, HomepageMedia $media, PageSeo $seo): View
     {
         $page = $this->homepage();
+        $sections = $page->sections->reject(
+            fn (PageSection $section): bool => (bool) ($schema->forSection($section)['admin_hidden'] ?? false),
+        );
 
         return view('admin.homepage.edit', [
             'page' => $page,
-            'sections' => $page->sections,
+            'sections' => $sections,
             'schema' => $schema,
             'media' => $media,
             'defaultSchemaJson' => $seo->defaultSchemaJson($page),

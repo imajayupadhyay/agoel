@@ -21,15 +21,17 @@ class AdminHomepageTest extends TestCase
             ->assertSee('Manage the homepage')
             ->assertSee('SEO & Publishing', false)
             ->assertSee('Hero')
-            ->assertSee('Positioning Strip')
             ->assertSee('Industries Introduction')
             ->assertSee('Philanthropy Introduction')
             ->assertSee('In the News')
             ->assertSee('Books')
-            ->assertSee('Research &amp; Publications', false)
             ->assertSee('Voice &amp; Philosophy', false)
-            ->assertSee('About Anmol Goel')
-            ->assertSee('Contact &amp; Footer', false);
+            ->assertSee('Contact &amp; Footer', false)
+            ->assertDontSee('Positioning Strip')
+            ->assertDontSee('Ticker entries')
+            ->assertDontSee('News cards')
+            ->assertDontSee('Summary/source')
+            ->assertDontSee('Biography paragraphs');
     }
 
     public function test_admin_can_update_homepage_text_visibility_and_order(): void
@@ -37,11 +39,11 @@ class AdminHomepageTest extends TestCase
         $page = $this->homepage();
         $payload = $this->payload($page);
         $hero = $page->sections->firstWhere('key', 'hero');
-        $creed = $page->sections->firstWhere('key', 'creed');
+        $voice = $page->sections->firstWhere('key', 'voice');
 
         $payload['sections'][$hero->id]['content']['title_first'] = 'Dynamic Anmol';
         $payload['sections'][$hero->id]['sort_order'] = 15;
-        $payload['sections'][$creed->id]['is_enabled'] = 0;
+        $payload['sections'][$voice->id]['is_enabled'] = 0;
 
         $this->actingAs($this->admin())
             ->put('/edit99/homepage', $payload)
@@ -53,14 +55,14 @@ class AdminHomepageTest extends TestCase
             'sort_order' => 15,
         ]);
         $this->assertDatabaseHas('page_sections', [
-            'id' => $creed->id,
+            'id' => $voice->id,
             'is_enabled' => false,
         ]);
 
         $this->get('/')
             ->assertOk()
             ->assertSee('Dynamic Anmol')
-            ->assertDontSee('A single thread runs through the company');
+            ->assertDontSee('In his own words');
     }
 
     public function test_admin_can_replace_a_homepage_image(): void

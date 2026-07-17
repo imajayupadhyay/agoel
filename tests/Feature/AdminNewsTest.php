@@ -63,6 +63,12 @@ class AdminNewsTest extends TestCase
             ->assertSee('Managed headline from admin')
             ->assertSee('/managed-coverage', false)
             ->assertSee('Managed syndication copy.');
+
+        $this->get('/')
+            ->assertOk()
+            ->assertSee('Managed Outlet')
+            ->assertSee('Managed headline from admin')
+            ->assertSee('/managed-coverage', false);
     }
 
     public function test_admin_can_replace_news_images(): void

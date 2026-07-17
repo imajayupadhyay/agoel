@@ -59,6 +59,11 @@ class HomepageManager
                 }
 
                 $sectionSchema = $this->schema->forSection($section);
+
+                if ($sectionSchema['admin_hidden'] ?? false) {
+                    continue;
+                }
+
                 $content = $section->content ?? [];
                 $submittedContent = $submitted['content'] ?? [];
 

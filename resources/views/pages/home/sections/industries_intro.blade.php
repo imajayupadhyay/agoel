@@ -1,21 +1,18 @@
-<section class="section" id="industries">
-  <div class="wrap split">
-    <div class="media reveal">
-      @if ($image = $media->url($content['image'] ?? null))
-        <img loading="lazy" decoding="async" src="{{ $image }}" alt="{{ $content['image_alt'] ?? '' }}">
-      @endif
-      <span class="tag">{{ $content['image_tag'] ?? '' }}</span>
-    </div>
-    <div class="block-head reveal" data-d="1">
-      <div class="eyebrow">{{ $content['eyebrow'] ?? '' }}</div>
-      <h2 class="display-lg">{{ $content['heading_first'] ?? '' }}<br>{{ $content['heading_second'] ?? '' }}</h2>
-      <p class="lead">{{ $content['description'] ?? '' }}</p>
-      <div class="ledger">
+@php
+    $image = $media->url($content['image'] ?? 'images/home/redesign-company-band.jpg');
+@endphp
+
+<span id="industries" class="anchor"></span>
+<section class="band" id="company">
+  <div class="band-bg" style="--wall:url('{{ $image }}')"></div>
+  <div class="wrap">
+    <div class="band-inner">
+      <p class="eyebrow rev">{{ $content['eyebrow'] ?? '' }}</p>
+      <h2 class="rev d1">{{ $content['heading_first'] ?? '' }} <b>{{ $content['heading_second'] ?? '' }}</b></h2>
+      <p class="lede rev d2">{{ $content['description'] ?? '' }}</p>
+      <div class="band-list rev d3">
         @foreach ($content['facts'] ?? [] as $fact)
-          <div class="row">
-            <span class="k">{{ $fact['label'] ?? '' }}</span>
-            <span class="v">{{ $fact['value'] ?? '' }}</span>
-          </div>
+          <div><span>{{ $fact['label'] ?? '' }}</span><em>{{ $fact['value'] ?? '' }}</em></div>
         @endforeach
       </div>
     </div>

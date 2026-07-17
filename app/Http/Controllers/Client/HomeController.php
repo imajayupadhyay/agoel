@@ -20,9 +20,21 @@ class HomeController extends Controller
                 ->orderBy('sort_order')])
             ->firstOrFail();
 
+        $newsCoverage = Page::query()
+            ->where('key', 'news')
+            ->where('is_published', true)
+            ->with(['sections' => fn ($query) => $query
+                ->where('key', 'hero')
+                ->where('is_enabled', true)])
+            ->first()
+            ?->sections
+            ->first()
+            ?->content['coverage'] ?? [];
+
         return view('pages.home', [
             'page' => $page,
             'sections' => $page->sections,
+            'newsCoverage' => collect($newsCoverage),
             'media' => $media,
             'schemaMarkup' => $seo->schema($page),
             'canonicalUrl' => $seo->canonical($page),

@@ -1,32 +1,34 @@
 @php
-  $background = $media->url($content['background_image'] ?? null);
-  $portrait = $media->url($content['portrait'] ?? null);
+  $portrait = $media->url($content['portrait'] ?? 'images/philanthropy/redesign-hero-portrait.jpg');
 @endphp
-<section class="hero scene" id="top">
-  <div class="scene-bg" @if($background) style="background-image:url('{{ $background }}')" @endif role="img" aria-label="{{ $content['background_alt'] ?? '' }}"></div>
-  <div class="scene-veil"></div>
-  <div class="hero-grid">
-    <div class="hero-copy">
-      <div class="eyebrow reveal in">{{ $content['eyebrow'] ?? '' }}</div>
-      <h1 class="hero-title display-xl" id="heroTitle">
-        <span class="ln"><span>{{ $content['title_first'] ?? '' }}</span></span>
-        <span class="ln"><span>{{ $content['title_second_before'] ?? '' }} <em>{{ $content['title_second_accent'] ?? '' }}</em></span></span>
+<section class="p-hero">
+  <div class="p-hero-bg" aria-hidden="true"><div class="kb"></div></div>
+  <div class="p-hero-wash" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="p-hero-copy">
+      <p class="eyebrow rev">{{ $content['eyebrow'] ?? '' }}</p>
+      <h1 class="rev d1">
+        {{ $content['title_first'] ?? '' }}
+        @if (! empty($content['title_second_before']))
+          {{ $content['title_second_before'] }}
+        @endif
+        <i>{{ $content['title_second_accent'] ?? '' }}</i>
       </h1>
-      <p class="hero-line reveal" data-d="2">{{ $content['description'] ?? '' }}</p>
-      <div class="hero-stats reveal" data-d="3">
+      <div class="hero-rule rev d1"></div>
+      <p class="hero-sub rev d2">{{ $content['description'] ?? '' }}</p>
+      <div class="pillars rev d3">
         @foreach ($content['stats'] ?? [] as $stat)
-          <div class="s"><b>{{ $stat['value'] ?? '' }}</b><span>{{ $stat['label'] ?? '' }}</span></div>
+          <div><div class="pk">{{ $stat['value'] ?? '' }}</div><div class="pv">{{ $stat['label'] ?? '' }}</div></div>
         @endforeach
       </div>
     </div>
-    <div class="portrait-wrap reveal" data-d="1">
-      <div class="portrait">
+    <div class="hero-portrait plate rev d2" data-para>
+      <div class="frame">
         @if ($portrait)
           <img loading="eager" decoding="async" fetchpriority="high" src="{{ $portrait }}" alt="{{ $content['portrait_alt'] ?? '' }}">
         @endif
       </div>
-      <div class="portrait-cap">{{ $content['portrait_caption'] ?? '' }}</div>
+      <p class="cap">{{ $content['portrait_caption'] ?? '' }}</p>
     </div>
   </div>
-  <div class="scrollcue"><span class="bar"></span>{{ $content['scroll_label'] ?? '' }}</div>
 </section>
