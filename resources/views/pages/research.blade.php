@@ -59,7 +59,7 @@
 <meta name="description" content="{{ $page->meta_description }}">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&family=Montserrat:wght@200;300;400;500;600&family=Cormorant+Garamond:ital,wght@0,500;1,500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
 
 <meta name="robots" content="{{ $robotsMeta }}">
 <meta name="author" content="Anmol Pushjai Goel">
@@ -106,7 +106,7 @@
     <div class="filters" id="filters"></div>
     <div class="publist" id="publist"></div>
     <p class="pubs-note">{{ $indexContent['note'] ?? '' }}</p>
-    <div class="wave"><svg id="wave" viewBox="0 0 2880 40" preserveAspectRatio="none"><path id="wavePath" fill="none" stroke="rgba(169,143,91,.5)" stroke-width="1.4"/></svg></div>
+    <div class="wave"><svg id="wave" viewBox="0 0 2880 40" preserveAspectRatio="none"><path id="wavePath" fill="none" stroke="rgba(169,134,62,.5)" stroke-width="1.4"/></svg></div>
   </div>
 </section>
 @endif
@@ -154,7 +154,7 @@
 <section class="section fields" id="fields">
   <div class="wrap">
     <div class="fields-head">
-      <svg class="orbit" viewBox="0 0 40 40"><circle cx="20" cy="20" r="13" fill="none" stroke="rgba(169,143,91,.4)" stroke-width="1"/><g class="dot"><circle cx="33" cy="20" r="2.4" fill="#A98F5B"/></g><circle cx="20" cy="20" r="2" fill="#C7B589"/></svg>
+      <svg class="orbit" viewBox="0 0 40 40"><circle cx="20" cy="20" r="13" fill="none" stroke="rgba(169,134,62,.4)" stroke-width="1"/><g class="dot"><circle cx="33" cy="20" r="2.4" fill="#A9863E"/></g><circle cx="20" cy="20" r="2" fill="#C6A25A"/></svg>
       <div class="eyebrow center reveal">{{ $fieldsContent['eyebrow'] ?? '' }}</div>
       <h2 class="reveal" data-d="1">{{ $fieldsContent['heading'] ?? '' }}</h2>
     </div>

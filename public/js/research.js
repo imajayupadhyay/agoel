@@ -184,7 +184,7 @@ if (flist) {
         const dy = P[i].y - P[j].y;
         const d = Math.hypot(dx, dy);
         if (d < D) {
-          ctx.strokeStyle = `rgba(169,143,91,${0.15 * (1 - d / D)})`;
+          ctx.strokeStyle = `rgba(169,134,62,${0.15 * (1 - d / D)})`;
           ctx.lineWidth = DPR;
           ctx.beginPath();
           ctx.moveTo(P[i].x, P[i].y);
@@ -196,7 +196,7 @@ if (flist) {
       const ddy = P[i].y - my;
       const dm = Math.hypot(ddx, ddy);
       if (dm < DM) {
-        ctx.strokeStyle = `rgba(199,181,137,${0.4 * (1 - dm / DM)})`;
+        ctx.strokeStyle = `rgba(198,162,90,${0.4 * (1 - dm / DM)})`;
         ctx.lineWidth = DPR;
         ctx.beginPath();
         ctx.moveTo(P[i].x, P[i].y);
@@ -205,7 +205,7 @@ if (flist) {
       }
     }
     for (const p of P) {
-      ctx.fillStyle = "rgba(199,181,137,.55)";
+      ctx.fillStyle = "rgba(198,162,90,.55)";
       ctx.beginPath();
       ctx.arc(p.x, p.y, 1.5 * DPR, 0, 7);
       ctx.fill();
