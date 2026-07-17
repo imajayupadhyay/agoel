@@ -103,7 +103,7 @@ class IndustriesManager
                     'body_before' => $this->clean($submitted['body_before']),
                     'body_accent' => $this->cleanNullable($submitted['body_accent'] ?? null),
                     'body_after' => $this->cleanNullable($submitted['body_after'] ?? null),
-                    'pull_quote' => $this->clean($submitted['pull_quote']),
+                    'pull_quote' => $this->cleanNullable($submitted['pull_quote'] ?? null) ?? '',
                     'facts' => collect($submitted['facts'] ?? [])
                         ->map(fn ($fact) => $this->clean((string) $fact))
                         ->filter()

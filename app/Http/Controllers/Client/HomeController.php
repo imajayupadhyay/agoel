@@ -20,7 +20,11 @@ class HomeController extends Controller
                 ->orderBy('sort_order')])
             ->firstOrFail();
 
-        $newsCoverage = Page::query()
+        $homeNewsCoverage = $page->sections
+            ->firstWhere('type', 'news')
+            ?->content['coverage'] ?? null;
+
+        $newsPageCoverage = Page::query()
             ->where('key', 'news')
             ->where('is_published', true)
             ->with(['sections' => fn ($query) => $query
@@ -30,6 +34,10 @@ class HomeController extends Controller
             ?->sections
             ->first()
             ?->content['coverage'] ?? [];
+
+        $newsCoverage = $newsPageCoverage !== config('news.sections.hero.content.coverage')
+            ? $newsPageCoverage
+            : ($homeNewsCoverage ?: $newsPageCoverage);
 
         return view('pages.home', [
             'page' => $page,

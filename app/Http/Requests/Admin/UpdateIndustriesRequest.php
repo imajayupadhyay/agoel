@@ -79,7 +79,7 @@ class UpdateIndustriesRequest extends FormRequest
             $rules["{$prefix}.body_before"] = ['required', 'string', 'max:3000'];
             $rules["{$prefix}.body_accent"] = ['nullable', 'string', 'max:300'];
             $rules["{$prefix}.body_after"] = ['nullable', 'string', 'max:3000'];
-            $rules["{$prefix}.pull_quote"] = ['required', 'string', 'max:600'];
+            $rules["{$prefix}.pull_quote"] = ['nullable', 'string', 'max:600'];
             $rules["{$prefix}.facts"] = ['nullable', 'array', 'max:8'];
             $rules["{$prefix}.facts.*"] = ['nullable', 'string', 'max:180'];
             $rules["{$prefix}.image_alt"] = ['nullable', 'string', 'max:180'];
