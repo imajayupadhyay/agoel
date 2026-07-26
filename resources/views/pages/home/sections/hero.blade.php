@@ -7,7 +7,6 @@
     <div class="hero-copy">
       <p class="eyebrow rev">{{ $content['eyebrow'] ?? '' }}</p>
       <h1 class="rev d1">{{ $content['title_first'] ?? '' }} <b>{{ $content['title_second'] ?? '' }}</b></h1>
-      <div class="hero-rule rev d1"></div>
       <p class="hero-sub rev d2">{!! $content['description'] ?? '' !!}</p>
       @if (! empty($content['description_secondary']))
         <p class="hero-sub sub-2 rev d2">{{ $content['description_secondary'] }}</p>

@@ -14,7 +14,6 @@
         @endif
         <i>{{ $content['title_second_accent'] ?? '' }}</i>
       </h1>
-      <div class="hero-rule rev d1"></div>
       <p class="hero-sub rev d2">{{ $content['description'] ?? '' }}</p>
       <div class="pillars rev d3">
         @foreach ($content['stats'] ?? [] as $stat)

@@ -26,9 +26,7 @@ a{color:inherit;text-decoration:none}
 .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
 .anchor{display:block;position:relative;top:-78px;visibility:hidden}
 .sec{padding:clamp(70px,9vw,132px) 0}
-.eyebrow{font-family:"Roboto";font-size:11px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--brass);display:inline-flex;align-items:center;gap:15px}
-.eyebrow::after{content:"";display:inline-block;height:1px;width:0;background:var(--brass);opacity:.55;transition:width 1s cubic-bezier(.2,.7,.2,1) .15s}
-.eyebrow.in::after{width:46px}
+.eyebrow{font-family:"Roboto";font-size:11px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--brass);display:inline-flex;align-items:center}
 h1,h2,h3{font-family:"Poppins",Arial,sans-serif;font-weight:400;letter-spacing:-.02em;line-height:1.1}
 h2{font-size:clamp(29px,4vw,50px)}
 h2 i,h1 i,h3 i{font-style:italic;font-weight:400;color:var(--brass)}
@@ -53,7 +51,6 @@ h2 i,h1 i,h3 i{font-style:italic;font-weight:400;color:var(--brass)}
 .p-hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(30px,5vw,74px);align-items:center;min-height:min(90vh,880px);padding:clamp(50px,6vw,84px) var(--gut)}
 .p-hero-copy{max-width:600px}
 h1{font-size:clamp(35px,5.2vw,66px);font-weight:400;margin-top:24px}
-.hero-rule{width:54px;height:1px;background:var(--brass);margin:30px 0 0}
 .hero-sub{margin-top:28px;font-size:16.5px;font-weight:300;color:var(--soft);max-width:52ch;line-height:1.82}
 .pillars{display:flex;margin-top:46px;border-top:1px solid var(--line)}
 .pillars div{flex:1;padding-top:22px}
@@ -85,7 +82,6 @@ h1{font-size:clamp(35px,5.2vw,66px);font-weight:400;margin-top:24px}
   background:radial-gradient(1100px 560px at 84% 6%,rgba(198,162,90,.14),transparent 60%),radial-gradient(900px 620px at -6% 110%,rgba(30,52,110,.55),transparent 62%)}
 .principles .wrap{position:relative;z-index:1}
 .principles .eyebrow{color:var(--brass-lt)}
-.principles .eyebrow::after{background:var(--brass-lt)}
 .principles h2{color:#fff}
 .pr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.14);margin-top:60px;border:1px solid rgba(255,255,255,.14)}
 .prin{background:var(--navy);padding:40px 34px 46px}
@@ -125,7 +121,6 @@ h1{font-size:clamp(35px,5.2vw,66px);font-weight:400;margin-top:24px}
   background:linear-gradient(180deg,rgba(11,17,36,.86) 0%,rgba(11,17,36,.72) 45%,rgba(11,17,36,.88) 100%)}
 .goal .wrap{position:relative;z-index:2;max-width:840px;padding-top:clamp(90px,12vw,150px);padding-bottom:clamp(90px,12vw,150px)}
 .goal .eyebrow{color:var(--brass-lt)}
-.goal .eyebrow::after{background:var(--brass-lt)}
 .goal h2{color:#fff;margin-top:22px}
 .goal p{margin:26px auto 0;font-size:17px;color:rgba(255,255,255,.82);font-weight:300;line-height:1.84;max-width:60ch}
 .goal .cta{display:inline-block;margin-top:42px;font-family:"Roboto";font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);background:var(--brass-lt);padding:16px 32px;transition:.28s ease}
@@ -179,6 +174,5 @@ footer{background:var(--paper);border-top:1px solid var(--line)}
   html{scroll-behavior:auto}
   .rev{opacity:1;transform:none;transition:none}
   .kb{animation:none!important}
-  .eyebrow::after{transition:none}
   .plate .frame img{transform:none!important}
 }

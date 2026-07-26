@@ -10,7 +10,6 @@
     <div class="hero-copy">
       <p class="eyebrow rev">{{ $content['eyebrow'] ?? '' }}</p>
       <h1 class="rev d1">{{ $content['title_first'] ?? '' }} <i>{{ $content['title_second'] ?? '' }}</i></h1>
-      <div class="hero-rule rev d1"></div>
       <p class="hero-sub rev d2">{{ $content['description'] ?? '' }}</p>
       <div class="stats rev d3">
         @foreach ($content['stats'] ?? [] as $stat)

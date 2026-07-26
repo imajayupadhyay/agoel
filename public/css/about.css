@@ -38,11 +38,9 @@
     font-size:11px;font-weight:500;
     letter-spacing:.32em;text-transform:uppercase;
     color:var(--gold);
-    display:inline-flex;align-items:center;gap:14px;
+    display:inline-flex;align-items:center;
   }
-  .eyebrow::before{content:"";width:26px;height:1px;background:var(--gold);opacity:.7}
   .eyebrow.center{justify-content:center}
-  .eyebrow.center::before{display:none}
 
   h1,h2,h3{font-family:var(--display);font-weight:300;letter-spacing:.005em;line-height:1.08}
   .section{padding:clamp(80px,11vw,150px) var(--pad)}
@@ -133,8 +131,7 @@
   .quote-card:hover{border-color:rgba(169,143,91,.5);background:linear-gradient(165deg,rgba(255,255,255,.09),rgba(255,255,255,.02))}
   .quote-card p{font-family:var(--display);font-weight:300;font-size:clamp(14px,1.05vw,16px);line-height:1.46;color:#F1EFEA}
   .quote-card .who{display:flex;flex-direction:column;gap:3px}
-  .quote-card .who .cat{font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:8px;margin-bottom:3px}
-  .quote-card .who .cat::before{content:"";width:14px;height:1px;background:var(--gold);opacity:.8}
+  .quote-card .who .cat{font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;margin-bottom:3px}
   .quote-card .who b{font-family:var(--display);font-weight:400;font-size:15.5px;color:#F4F2ED;letter-spacing:.01em}
   .quote-card .who .role{font-size:11px;line-height:1.42;color:var(--muted-d);letter-spacing:.015em}
   .quote-card.namesonly{padding:18px 20px}
