@@ -50,9 +50,25 @@ if (stream && praise.length) {
     track.className = 'col-track';
     track.style.setProperty('--dur', def.dur);
 
-    const build = () => def.items.forEach((c) => {
-      const card = document.createElement('div');
+    const build = (isDuplicate = false) => def.items.forEach((c) => {
+      const card = document.createElement(c.url ? 'a' : 'div');
       card.className = `quote-card${c.q ? '' : ' namesonly'}`;
+
+      if (c.url) {
+        card.href = c.url;
+        card.setAttribute('aria-label', `${c.name}${c.newTab ? ' (opens in a new tab)' : ''}`);
+
+        if (c.newTab) {
+          card.target = '_blank';
+          card.rel = 'noopener noreferrer';
+        }
+
+        if (isDuplicate) {
+          card.tabIndex = -1;
+          card.setAttribute('aria-hidden', 'true');
+        }
+      }
+
       card.innerHTML = (c.q ? `<p>&ldquo;${escapeHtml(c.q)}&rdquo;</p>` : '')
         + '<div class="who">'
         + `<span class="cat">${escapeHtml(c.cat)}</span>`
@@ -63,7 +79,7 @@ if (stream && praise.length) {
     });
 
     build();
-    if (! reduce) build();
+    if (! reduce) build(true);
     col.appendChild(track);
     stream.appendChild(col);
   });

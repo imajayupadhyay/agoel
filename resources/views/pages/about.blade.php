@@ -16,6 +16,8 @@
           'name' => $item['name'] ?? '',
           'title' => $item['title'] ?? '',
           'q' => $item['quote'] ?? '',
+          'url' => $item['url'] ?? '',
+          'newTab' => ($item['link_target'] ?? 'same') === 'new',
       ])
       ->filter(fn ($item) => filled($item['name']))
       ->values();

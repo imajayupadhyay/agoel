@@ -22,6 +22,8 @@ class AdminAboutTest extends TestCase
             ->assertSee('SEO & Publishing', false)
             ->assertSee('Recognition Hero')
             ->assertSee('Recognition wall')
+            ->assertSee('Name / card link')
+            ->assertSee('Open link in')
             ->assertSee('About Profile')
             ->assertSee('Profile facts')
             ->assertSee('In His Words')
@@ -52,6 +54,8 @@ class AdminAboutTest extends TestCase
         $payload['sections'][$hero->id]['content']['heading_line_one'] = 'Managed reputation';
         $payload['sections'][$hero->id]['content']['recognitions'][0]['name'] = 'Managed Mentor';
         $payload['sections'][$hero->id]['content']['recognitions'][0]['quote'] = 'Managed recognition quote.';
+        $payload['sections'][$hero->id]['content']['recognitions'][0]['url'] = 'https://example.com/managed-mentor';
+        $payload['sections'][$hero->id]['content']['recognitions'][0]['link_target'] = 'new';
         $payload['sections'][$profile->id]['content']['metadata'][0]['value'] = 'Managed Company';
         $payload['sections'][$profile->id]['content']['paragraphs'][0]['emphasis'] = 'managed emphasis';
         $payload['sections'][$voice->id]['content']['quotes'][0]['text'] = 'Managed voice quote.';
@@ -66,9 +70,25 @@ class AdminAboutTest extends TestCase
             ->assertSee('Managed reputation')
             ->assertSee('Managed Mentor')
             ->assertSee('Managed recognition quote.')
+            ->assertSee('https://example.com/managed-mentor', false)
+            ->assertSee('"newTab":true', false)
             ->assertSee('Managed Company')
             ->assertSee('managed emphasis')
             ->assertSee('Managed voice quote.');
+    }
+
+    public function test_about_recognition_rejects_an_unsafe_link(): void
+    {
+        $page = $this->page();
+        $payload = $this->payload($page);
+        $hero = $page->sections->firstWhere('key', 'hero');
+
+        $payload['sections'][$hero->id]['content']['recognitions'][0]['url'] = 'javascript:alert(1)';
+        $payload['sections'][$hero->id]['content']['recognitions'][0]['link_target'] = 'new';
+
+        $this->actingAs($this->admin())
+            ->put('/edit99/about-anmol-goel', $payload)
+            ->assertSessionHasErrors("sections.{$hero->id}.content.recognitions.0.url");
     }
 
     public function test_admin_can_replace_about_images(): void

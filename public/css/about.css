@@ -121,14 +121,16 @@
   .col-track{display:flex;flex-direction:column;gap:clamp(14px,1.6vw,22px);will-change:transform}
   .col.up .col-track{animation:scrollUp var(--dur,42s) linear infinite}
   .col.down .col-track{animation:scrollDown var(--dur,48s) linear infinite}
-  .praise-stream:hover .col-track{animation-play-state:paused}
+  .praise-stream:hover .col-track,.praise-stream:focus-within .col-track{animation-play-state:paused}
   @keyframes scrollUp{from{transform:translateY(0)}to{transform:translateY(-50%)}}
   @keyframes scrollDown{from{transform:translateY(-50%)}to{transform:translateY(0)}}
 
   .quote-card{background:linear-gradient(165deg,rgba(255,255,255,.055),rgba(255,255,255,.012));
     border:1px solid var(--line-d);padding:20px 20px 18px;backdrop-filter:blur(3px);
     transition:border-color .5s,background .5s}
+  a.quote-card{display:block;cursor:pointer}
   .quote-card:hover{border-color:rgba(169,143,91,.5);background:linear-gradient(165deg,rgba(255,255,255,.09),rgba(255,255,255,.02))}
+  a.quote-card:focus-visible{outline:2px solid var(--gold-soft);outline-offset:3px;border-color:var(--gold-soft)}
   .quote-card p{font-family:var(--display);font-weight:300;font-size:clamp(14px,1.05vw,16px);line-height:1.46;color:#F1EFEA}
   .quote-card .who{display:flex;flex-direction:column;gap:3px}
   .quote-card .who .cat{font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;margin-bottom:3px}
